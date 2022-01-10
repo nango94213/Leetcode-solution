@@ -1,17 +1,16 @@
 class Solution:
     def fourSum(self, nums: List[int], target: int) -> List[List[int]]:
-        res = []
-        def ksum(nums,target,k,path):
+        def ksum(nums,target,k):
+            ans=[]
             if len(nums)==0 or nums[0]*k>target or nums[-1]*k<target:
-                return
+                return ans
             if k==2:
-                for subset in twosum(nums, target):
-                    res.append(path + subset)
+                return twosum(nums,target)
             for i in range(len(nums)):
                 if i==0 or nums[i-1]!=nums[i]:
-                     ksum(nums[i+1:],target-nums[i],k-1,path + [nums[i]])
-                        
-
+                    for subset in ksum(nums[i+1:],target-nums[i],k-1):
+                        ans.append([nums[i]]+subset)
+            return ans
         
         def twosum(numss,target):
             ans=[]
@@ -35,6 +34,4 @@ class Solution:
         
         
         nums.sort()
-        ksum(nums,target,4,[])
-        
-        return res
+        return ksum(nums,target,4)
