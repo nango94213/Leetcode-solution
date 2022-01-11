@@ -11,5 +11,5 @@ class Solution:
             else:
                 r=mid
         
-        return l
+        return r
         
