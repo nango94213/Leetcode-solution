@@ -22,5 +22,5 @@ class Solution:
                     dfs(pool[i:], path + [pool[:i]])
         
         dfs(s, [])
-        print(res)
+       
         return res
