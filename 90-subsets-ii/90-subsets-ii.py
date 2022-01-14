@@ -7,8 +7,9 @@ class Solution:
             res.append(path)
             
             for i in range(0,len(pool)):
-                if i==0 or pool[i]!=pool[i-1]:
-                    dfs(pool[i+1:],path+[pool[i]])
+                if i>0 and pool[i]==pool[i-1]:
+                    continue
+                dfs(pool[i+1:],path+[pool[i]])
                 
         dfs(sorted(nums),[])
         
