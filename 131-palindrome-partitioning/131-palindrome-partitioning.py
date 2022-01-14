@@ -18,7 +18,7 @@ class Solution:
                 return
 
             for i in range(len(pool)):
-                if ispad(pool[:i+1]):
+                if pool[:i+1] == pool[:i+1][::-1] :
                     dfs(pool[i+1:], path + [pool[:i+1]])
         
         dfs(s, [])
