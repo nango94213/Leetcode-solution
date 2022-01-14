@@ -17,9 +17,9 @@ class Solution:
                 res.append(path)
                 return
 
-            for i in range(1, len(pool)+1):
-                if ispad(pool[:i]):
-                    dfs(pool[i:], path + [pool[:i]])
+            for i in range(len(pool)):
+                if ispad(pool[:i+1]):
+                    dfs(pool[i+1:], path + [pool[:i+1]])
         
         dfs(s, [])
        
