@@ -1,20 +1,35 @@
 class Solution:
-    def getMaximumGold(self, grid):
-        self.ret = 0 # global varible
+    def getMaximumGold(self, grid: List[List[int]]) -> int:
+        res = 0
+        direction = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+        def dfs(i,j,path):
+            nonlocal res
+            #if grid[i][j]==0:
+                #return
+            
+            path += grid[i][j]
+            res = max(path, res)
+            
+            tmp = grid[i][j]
+            grid[i][j]=0
+            
+            for d in direction:
+                new_i = i + d[0]
+                new_j = j + d[1]
+                
+                if 0 <= new_i < len(grid) and 0<= new_j < len(grid[0]) and grid[new_i][new_j]!=0:
+                    dfs(new_i, new_j, path)
+            grid[i][j] = tmp
+      
+ 
+
         for i in range(len(grid)):
             for j in range(len(grid[0])):
-                self.dfs(grid, i, j, 0)
-        return self.ret
-
-    def dfs(self, grid, i, j, val):
-        if 0 <= i < len(grid) and 0 <= j < len(grid[0]) and grid[i][j]: # prunning
-            tmp = grid[i][j]
-            val += grid[i][j]
-            grid[i][j] = 0 # act as visited[i][j]
-            self.ret = max(self.ret, val)
-            self.dfs(grid, i + 1, j, val)
-            self.dfs(grid, i - 1, j, val)
-            self.dfs(grid, i, j + 1, val)
-            self.dfs(grid, i, j - 1, val)
-            grid[i][j] = tmp # restore stack 
-             # restore stack 
+                if grid[i][j]!=0:
+                    dfs(i,j, 0)
+                    
+        
+        
+        
+        
+        return res
