@@ -4,6 +4,8 @@ class Solution:
         direction = [(-1, 0), (1, 0), (0, -1), (0, 1)]
         def dfs(i,j,path):
             nonlocal res
+            if grid[i][j]==0:
+                return
             
     
             res = max(path, res)
