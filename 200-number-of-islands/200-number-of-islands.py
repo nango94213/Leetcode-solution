@@ -2,14 +2,13 @@ class Solution(object):
     def numIslands(self, grid):
         direction = [(-1, 0), (1, 0), (0, -1), (0, 1)]
         def dfs(i,j):
-            if grid[i][j]=='0':
-                return
+    
             grid[i][j]='0'
             for d in direction:
                 new_i = i + d[0]
                 new_j = j + d[1]
                 
-                if 0 <= new_i < len(grid) and 0<= new_j < len(grid[0]):
+                if 0 <= new_i < len(grid) and 0<= new_j < len(grid[0]) and grid[new_i][new_j] == '1':
                     dfs(new_i, new_j)
         count=0
         for i in range(len(grid)):
