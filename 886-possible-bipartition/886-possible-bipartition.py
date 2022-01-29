@@ -11,18 +11,19 @@ class Solution:
         two_group = {}
         for i in range(1, n+1):
             if i not in seen:
-                seen.add(i)
                 stack = collections.deque([(i, True)])
-            
+                two_group[i] = True
                 while stack:
-                    person, group = stack.popleft()
-                    two_group[person] = group
+                    person, group = stack.popleft()    
+                    seen.add(person)
                     for child in graph[person]:
+                            if child in seen:
+                                continue
                             if child in two_group and (two_group[child] != (not group)):
                                     return False
-                            if child not in seen:
-                                seen.add(child)
-                                stack.append((child, not group))
+                            stack.append((child, not group))
+                            two_group[child] = not group
+                    
         return True
                 
                 
