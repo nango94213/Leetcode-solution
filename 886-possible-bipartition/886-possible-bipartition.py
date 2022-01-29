@@ -15,7 +15,8 @@ class Solution:
             
                 while stack:
                     person, group = stack.popleft()
-                    two_group[person] = group
+                    if person not in two_group:
+                         two_group[person] = group
                     seen.add(person)
                     for child in graph[person]:
                             if child in seen:
