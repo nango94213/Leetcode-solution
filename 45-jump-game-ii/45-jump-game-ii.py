@@ -8,18 +8,17 @@ class Solution(object):
         if len(nums) == 1:
             return 0
         
+        l = 0
         jump = 1
+        r = nums[0]
         
-        left = 0
-        right = nums[0]
-        farthest = 0
         
-        while right < len(nums) - 1:
-            farthest = max(i+nums[i] for i in range(left, right+1))
-            
+        while r < len(nums) - 1:
             jump += 1
+            farthest = max(nums[i]+i for i in range(l, r+1))
             
-            left, right = right + 1, farthest
+            l, r = r + 1, farthest
         
         return jump
+            
         
