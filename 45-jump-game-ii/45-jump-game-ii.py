@@ -4,13 +4,22 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        if len(nums)==1:
+        
+        if len(nums) == 1:
             return 0
-        l,r=0,nums[0]
-        jump=1
-        while r<len(nums)-1:
-            farthest=max([i+nums[i] for i in range(l,r+1)])
-            jump+=1
-            l,r=r+1,farthest
-        return jump
+        
+        jump = 1
+        
+        left = 0
+        right = nums[0]
+        farthest = 0
+        
+        while right < len(nums) - 1:
+            farthest = max(i+nums[i] for i in range(left, right+1))
             
+            jump += 1
+            
+            left, right = right + 1, farthest
+        
+        return jump
+        
