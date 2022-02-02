@@ -9,7 +9,7 @@ class Solution:
         
         start = state.index('0')
         
-        seen = set([state])
+        seen = set([(start, state)])
         
         steps = 0
 
@@ -28,8 +28,8 @@ class Solution:
                     temp[current], temp[d] = temp[d], temp[current]
                     temp = ''.join(temp)
                     
-                    if temp not in seen:
-                        seen.add(temp)
+                    if (d, temp) not in seen:
+                        seen.add((d, temp))
                         q.append((d, temp))
             
             steps += 1
