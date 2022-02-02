@@ -39,18 +39,19 @@ class Solution:
         
         directions = [(-1, 0), (0, 1), (1, 0), (0, -1)] # 0 up 1 right 2 down 3 left
         
-        seen = set()
+        seen = set([(0, 0, 0)])
         
         def dfs(x, y, d):
             
             robot.clean()
-            seen.add((x, y))
+            
             
             for i in range(4):
                 new_d = (d+i)%4
                 new_x, new_y = x + directions[new_d][0], y + directions[new_d][1]
                 
                 if (new_x, new_y) not in seen and robot.move():
+                    seen.add((new_x, new_y))
                     dfs(new_x, new_y, new_d)
                     
                     robot.turnRight()
