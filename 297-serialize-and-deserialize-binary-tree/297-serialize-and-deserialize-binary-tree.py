@@ -4,7 +4,7 @@
 #         self.val = x
 #         self.left = None
 #         self.right = None
-
+import collections
 class Codec:
 
     def serialize(self, root):
@@ -37,11 +37,11 @@ class Codec:
         
         def to_tree():
             if l[0] == 'None':
-                l.pop(0)
+                l.popleft()
                 return
             
             root = TreeNode(l[0])
-            l.pop(0)
+            l.popleft()
             
             root.left = to_tree()
             root.right = to_tree()
@@ -49,7 +49,7 @@ class Codec:
             return root
         
         l = data.split(',')
-        
+        l = collections.deque(l)
         return to_tree()
                 
         
