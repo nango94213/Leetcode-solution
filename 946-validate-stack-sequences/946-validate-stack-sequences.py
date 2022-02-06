@@ -5,10 +5,13 @@ class Solution:
         for i in pushed:
             stack.append(i)
             
-            while stack and stack[-1] == popped[index] and index < len(popped):
+            while stack and stack[-1] == popped[index]:
                 stack.pop()
                 index += 1
         
-        
-        return len(stack) == 0
+
+        if stack:
+            return False
+        else:
+            return True
                 
