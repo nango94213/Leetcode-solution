@@ -22,7 +22,10 @@ class Solution:
             left = dfs(node.left)
             right = dfs(node.right)
             
-            count += sum([i+j<=distance for i in left for j in right])
+            for i in left:
+                for j in right:
+                    if i + j <= distance:
+                        count += 1
             
             return [n+1 for n in left+right if n+1 < distance]
         
