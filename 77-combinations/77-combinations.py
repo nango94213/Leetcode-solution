@@ -10,8 +10,8 @@ class Solution:
             for i in range(len(pool)):
                 if i!=0 and pool[i] == pool[i-1]:
                     continue
-                    
-                dfs(pool[i+1:],path+[pool[i]])
+                tmp = path + [pool[i]]   
+                dfs(pool[i+1:],tmp)
         
         dfs(range(1, n+1),[])
         
