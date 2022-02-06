@@ -18,20 +18,20 @@ class Solution:
                 if rooms[i][j] == 0:
                     q.append((i, j))
         
+        jump = 1
         while q:
-            x, y = q.popleft()
+            for _ in range(len(q)):
+                x, y = q.popleft()
             
-            for d in directions:
+                for d in directions:
                 
-                new_x = x + d[0]
-                new_y = y + d[1]
+                      new_x = x + d[0]
+                      new_y = y + d[1]
                 
-                if new_x < 0 or new_y < 0 or new_x >= rows or new_y >= cols or rooms[new_x][new_y] != 2147483647:
-                    continue
-                
-                rooms[new_x][new_y] = rooms[x][y] + 1
-                
-                q.append((new_x, new_y))
+                      if 0 <= new_x < rows and 0 <= new_y <cols and rooms[new_x][new_y] == 2147483647:
+                            rooms[new_x][new_y] = jump
+                            q.append((new_x, new_y))
+            jump += 1
                 
                 
         
