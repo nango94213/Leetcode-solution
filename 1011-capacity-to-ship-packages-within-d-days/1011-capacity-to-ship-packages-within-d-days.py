@@ -8,12 +8,12 @@ class Solution:
             
             mid = (l + r) // 2
             
-            one_ship = 0
+            one_ship = weights[0]
             
             day = 1
             
             
-            for w in weights:
+            for w in weights[1:]:
                 
                 if one_ship+w > mid:
                     day += 1
