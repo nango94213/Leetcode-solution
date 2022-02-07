@@ -12,7 +12,7 @@ class Solution:
 
     def pickIndex(self) -> int:
         target=random.random()*self.total
-        return bisect.bisect_left(self.w,target)
+        return bisect.bisect(self.w,target)
         
         
 '''
