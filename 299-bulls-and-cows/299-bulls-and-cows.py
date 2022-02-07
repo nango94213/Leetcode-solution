@@ -16,8 +16,8 @@ class Solution(object):
                 b[secret[i]] -= 1
                     
         second=0
-        for j in a:
-            if j in b:
+        for j in b:
+            if j in a:
                 second+=min(b[j],a[j])
                 
                 
