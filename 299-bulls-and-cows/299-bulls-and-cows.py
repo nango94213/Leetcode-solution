@@ -13,11 +13,11 @@ class Solution(object):
             if secret[i]==guess[i]:
                 first+=1
                 a[secret[i]] -= 1
-                b[secret[i]] -=1
+                b[secret[i]] -= 1
                     
         second=0
-        for j in b:
-            if j in a:
+        for j in a:
+            if j in b:
                 second+=min(b[j],a[j])
                 
                 
