@@ -11,9 +11,8 @@ class Solution:
             dic[s[right]] = right
             
             if len(dic) > k:
-                left = dic.popitem(last=False)[1]
-                print(left)
-                left += 1
+                left = dic.popitem(last=False)[1] + 1
+
             longest = max(longest, right-left+1)
         
         return longest
