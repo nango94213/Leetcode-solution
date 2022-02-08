@@ -13,7 +13,7 @@ class Solution:
             
             q.append(i)
             
-            if i - q[0] >= k:
+            if i - q[0] +1 > k:
                 q.popleft()
             
             if i >= k - 1:
