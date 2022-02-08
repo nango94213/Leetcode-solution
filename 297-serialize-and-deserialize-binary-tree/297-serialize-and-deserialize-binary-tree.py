@@ -17,15 +17,15 @@ class Codec:
         
         def to_string(node):
             if node:
-                res.append(str(node.val)+',')
+                res.append(str(node.val))
                 to_string(node.left)
                 to_string(node.right)
             else:
-                res.append('None,')
+                res.append('None')
         
         to_string(root)
         
-        return ''.join(res)
+        return ','.join(res)
         
 
     def deserialize(self, data):
@@ -50,6 +50,7 @@ class Codec:
         
         l = data.split(',')
         l = collections.deque(l)
+        
         return to_tree()
                 
         
