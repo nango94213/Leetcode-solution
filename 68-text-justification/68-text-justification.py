@@ -19,7 +19,8 @@ class Solution:
             current.append(w)
             numbers += len(w)
         
-        res.append(' '.join(current) + ' '*(maxWidth-numbers-(len(current)-1)))
+        tmp = ' '.join(current) 
+        res.append(tmp+ ' '*(maxWidth-len(tmp)))
         
         return res
                         
