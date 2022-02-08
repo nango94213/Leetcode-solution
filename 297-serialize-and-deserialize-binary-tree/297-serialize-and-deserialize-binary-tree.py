@@ -36,12 +36,12 @@ class Codec:
         """
         
         def to_tree():
-            if l[0] == 'None':
-                l.popleft()
-                return
+            val = l.popleft()
+            if val == 'None':
+                return 
             
-            root = TreeNode(l[0])
-            l.popleft()
+            root = TreeNode(val)
+            
             
             root.left = to_tree()
             root.right = to_tree()
