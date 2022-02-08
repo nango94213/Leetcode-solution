@@ -7,9 +7,9 @@ class Solution(object):
         :rtype: List[List[int]]
         """
         heap=[]
-        for i in points:
-            distance=-(i[0]**2+i[1]**2)
-            heapq.heappush(heap,(distance,i[0],i[1]))
+        for i, v in enumerate(points):
+            distance=-(v[0]**2+v[1]**2)
+            heapq.heappush(heap,(distance,i))
             if len(heap)>k:
                 heapq.heappop(heap)
-        return [[x[1],x[2]] for x in heap ]
+        return [points[x[1]] for x in heap]
