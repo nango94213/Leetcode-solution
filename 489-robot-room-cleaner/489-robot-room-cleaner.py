@@ -39,7 +39,7 @@ class Solution:
         
         directions = [(-1, 0), (0, 1), (1, 0), (0, -1)] # 0 up 1 right 2 down 3 left
         
-        seen = set([(0, 0, 0)])
+        seen = set([(0, 0)])
         
         def dfs(x, y, d):
             
@@ -59,6 +59,7 @@ class Solution:
                     robot.move()
                     robot.turnRight()
                     robot.turnRight()
+                    
                 robot.turnRight()
         
         dfs(0, 0, 0)
