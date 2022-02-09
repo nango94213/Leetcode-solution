@@ -13,8 +13,7 @@ class Solution:
             
             if not node:
                 return 0
-            if not node.left and not node.right:
-                return 1
+           
             
             left = dfs(node.left)
             right = dfs(node.right)
