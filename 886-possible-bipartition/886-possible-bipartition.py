@@ -17,10 +17,11 @@ class Solution:
                     person, group = stack.popleft()    
                     seen.add(person)
                     for child in graph[person]:
+                            if child in two_group and (two_group[child] != (not group)):
+                                             return False
                             if child not in seen:
 
-                                        if child in two_group and (two_group[child] != (not group)):
-                                             return False
+                                        
                                         stack.append((child, not group))
                                         two_group[child] = not group
                     
