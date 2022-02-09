@@ -33,7 +33,7 @@ class Solution:
                 
         
         
-        left, right = 0, 2**depth - 1
+        left, right = 1, 2**depth - 1
         
         while left <= right:
             mid = (left+right) // 2
