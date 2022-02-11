@@ -7,10 +7,16 @@
 class Solution:
     def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
         
+        dic = {}
+        
+        for i, v in enumerate(inorder):
+            dic[v] = i
+        
+        
         def dfs(sub_inorder):
             if sub_inorder:
                 current_val = preorder.pop(0)
-                index = sub_inorder.index(current_val)
+                index = dic[current_val] - dic[sub_inorder[0]]
                 root = TreeNode(current_val)
             
                 root.left = dfs(sub_inorder[:index])
