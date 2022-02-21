@@ -1,49 +1,48 @@
+import collections
 class Solution:
-    
-    def findCheapestPrice(self, n: int, flights: List[List[int]], src: int, dst: int, K: int) -> int:
+    def findCheapestPrice(self, n: int, flights: List[List[int]], src: int, dst: int, k: int) -> int:
         
-        # Build the adjacency matrix
-        adj_matrix = [[0 for _ in range(n)] for _ in range(n)]
-        for s, d, w in flights:
-            adj_matrix[s][d] = w
-            
-        # Shortest distances dictionary
-        distances = {}
-        distances[(src, 0)] = 0
         
-        # BFS Queue
-        bfsQ = deque([src])
         
-        # Number of stops remaining
-        stops = 0
-        ans = float("inf")
+        dic = collections.defaultdict(list)
         
-        # Iterate until we exhaust K+1 levels or the queue gets empty
-        while bfsQ and stops < K + 1:
-            
-            # Iterate on current level
-            length = len(bfsQ)
-            for _ in range(length):
-                node = bfsQ.popleft()
+        for f in flights:
+            dic[f[0]].append((f[1], f[2]))
+        
+        
+   
+        
+        q = collections.deque([src])
+        
+        steps = 0
+        min_price = float('inf')
+        dp = {}
+        dp[(src, 0)] = 0
+        while q and steps<=k+1:
+            for _ in range(len(q)):
                 
-                # Loop over neighbors of popped node
-                for nei in range(n):
-                    if adj_matrix[node][nei] > 0:
-                        dU = distances.get((node, stops), float("inf"))
-                        dV = distances.get((nei, stops + 1), float("inf"))
-                        wUV = adj_matrix[node][nei]
-                        
-                        # No need to update the minimum cost if we have already exhausted our K stops. 
-                        if stops == K and nei != dst:
-                            continue
-                        
-                        if dU + wUV < dV:
-                            distances[nei, stops + 1] = dU + wUV
-                            bfsQ.append(nei)
-                            
-                            # Shortest distance of the destination from the source
-                            if nei == dst:
-                                ans = min(ans, dU + wUV)
-            stops += 1   
+                
+                current = q.popleft()
+                
+          
+                if current == dst:
+                    min_price = min(min_price, dp[(current, steps)])
+                    continue
+          
+                 
+                for outgoing in dic[current]:
+                    cost_now = dp[(current, steps)] if (current, steps) in dp else float('inf')
+                    cost_outgoing = dp[(outgoing[0], steps+1)] if (outgoing[0], steps+1) in dp else float('inf')
+                    
+                    if outgoing[1] + cost_now < cost_outgoing:
+                        q.append(outgoing[0])
+                        dp[(outgoing[0], steps+1)] = outgoing[1] + cost_now
+          
+            steps += 1
         
-        return -1 if ans == float("inf") else ans
+        return min_price if min_price != float('inf') else -1
+                
+            
+                
+            
+            
