@@ -36,17 +36,18 @@ class Codec:
         """
         
         def to_tree():
-            val = l.popleft()
-            if val == 'None':
-                return 
+            if l:
+                val = l.popleft()
+                if val == 'None':
+                    return 
             
-            root = TreeNode(val)
+                root = TreeNode(val)
             
             
-            root.left = to_tree()
-            root.right = to_tree()
+                root.left = to_tree()
+                root.right = to_tree()
             
-            return root
+                return root
         
         l = data.split(',')
         l = collections.deque(l)
