@@ -9,9 +9,10 @@ class Solution:
 
         for r in range(len(s)):
             if s[r] in target:
-                if target[s[r]] > 0:
-                    found += 1
+                
                 target[s[r]] -= 1
+                if target[s[r]] >= 0:
+                    found += 1
 
 
             while found==len(t):
