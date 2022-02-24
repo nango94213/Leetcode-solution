@@ -7,7 +7,9 @@ class Solution:
         
         for right in range(len(s)):
             if s[right] in dic:
-                dic.pop(s[right])
+                dic[s[right]] = right
+                dic.move_to_end(s[right])
+                
             dic[s[right]] = right
             
             if len(dic) > k:
