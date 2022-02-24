@@ -6,11 +6,11 @@ class Solution:
         dic = collections.OrderedDict()
         
         for right in range(len(s)):
-            if s[right] in dic:
-                dic[s[right]] = right
-                dic.move_to_end(s[right])
-                
+   
             dic[s[right]] = right
+            dic.move_to_end(s[right])
+                
+      
             
             if len(dic) > k:
                 left = dic.popitem(last=False)[1] + 1
