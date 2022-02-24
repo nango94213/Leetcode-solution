@@ -16,7 +16,7 @@ class Solution:
         
         steps = 0
         min_price = float('inf')
-        dp = {}
+        dp = collections.defaultdict(lambda: float('inf'))
         dp[(src, 0)] = 0
         while q and steps<=k+1:
             for _ in range(len(q)):
@@ -31,8 +31,8 @@ class Solution:
           
                  
                 for outgoing in dic[current]:
-                    cost_now = dp[(current, steps)] if (current, steps) in dp else float('inf')
-                    cost_outgoing = dp[(outgoing[0], steps+1)] if (outgoing[0], steps+1) in dp else float('inf')
+                    cost_now = dp[(current, steps)] 
+                    cost_outgoing = dp[(outgoing[0], steps+1)] 
                     
                     if outgoing[1] + cost_now < cost_outgoing:
                         q.append(outgoing[0])
