@@ -27,7 +27,7 @@ class Solution:
           
                 if current == dst:
                     min_price = min(min_price, dp[(current, steps)])
-                    continue
+          
           
                  
                 for outgoing in dic[current]:
