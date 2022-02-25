@@ -1,17 +1,18 @@
+import collections
 class Solution:
     def canCross(self, stones: List[int]) -> bool:
         if stones[1]!=1:
             return False
             
         
-        stack = [(1, 1)]
+        stack = collections.deque([(1,1)])
         
         seen = set([(1, 1)])
         target = stones[-1]
         stones_set = set(stones)
         while stack:
             for _ in range(len(stack)):
-                k, p = stack.pop(0)
+                k, p = stack.popleft()
                 if p == target:
                     return True
             
