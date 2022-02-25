@@ -5,11 +5,11 @@ class Solution:
         
         total = 0
         
-        check = [x[1] for x in properties]
+
         
         stack = []
         
-        for c in check:
+        for a, c in properties:
             while stack and stack[-1] < c:
                 stack.pop()
                 total += 1
