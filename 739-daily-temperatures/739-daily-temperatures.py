@@ -8,7 +8,7 @@ class Solution:
         
         for i, v in enumerate(temperatures):
             
-            while stack and stack[-1][1] < v:
+            while stack and temperatures[stack[-1][0]] < v:
                 index, t = stack.pop()
                 res[index] = i - index
             
