@@ -15,15 +15,15 @@ class Solution:
                 if p == target:
                     return True
             
-                if (p+k) in stones and 0<=k<=target and (k, p+k) not in seen:
+                if (p+k) in stones_set and 0<=k<=target and (k, p+k) not in seen:
                     seen.add((k, p+k))
                     stack.append((k, p+k))
                 
-                if (p+k+1) in stones and 0<=k+1<=target and (k+1, p+k+1) not in seen:
+                if (p+k+1) in stones_set and 0<=k+1<=target and (k+1, p+k+1) not in seen:
                     seen.add((k+1, p+k+1))
                     stack.append((k+1, p+k+1))
                 
-                if (p+k-1) in stones and 0<=k-1<=target and (k-1, p+k-1) not in seen:
+                if (p+k-1) in stones_set and 0<=k-1<=target and (k-1, p+k-1) not in seen:
                     seen.add((k-1, p+k-1))
                     stack.append((k-1, p+k-1))
         
