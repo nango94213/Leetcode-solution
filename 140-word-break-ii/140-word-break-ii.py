@@ -19,7 +19,7 @@ class Solution:
         
         def dfs(pool, path):
             
-            if not pool or check(pool):
+
                 
                 if not pool:
                     res.append(path[1:])
