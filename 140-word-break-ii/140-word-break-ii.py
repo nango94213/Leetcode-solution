@@ -1,6 +1,6 @@
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> List[str]:
-        
+        wordDict = set(wordDict)
         def check(g):
             dp = [False] * len(g)
         
@@ -19,7 +19,7 @@ class Solution:
         
         def dfs(pool, path):
             
-            if not pool or check(pool):
+      
                 
                 if not pool:
                     res.append(path[1:])
