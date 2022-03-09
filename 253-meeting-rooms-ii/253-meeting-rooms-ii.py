@@ -5,14 +5,15 @@ class Solution:
         intervals.sort()
         
         h = []
-        h.append(intervals[0][1])
+    
         
 
         
-        for i in intervals[1:]:
+        for i in intervals:
             
-            if i[0] >= h[0]:
+            if h and i[0] >= h[0]:
                 heapq.heappop(h)
+            
             
             heapq.heappush(h, i[1])
         
