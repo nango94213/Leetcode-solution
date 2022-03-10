@@ -5,7 +5,7 @@ class Solution:
         
         stack = [intervals[0]]
         
-        for i in intervals:
+        for i in intervals[1:]:
             
             if stack[-1][1] < i[0]:
                 stack.append(i)
