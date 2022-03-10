@@ -10,7 +10,7 @@ class Solution:
                 
                 res = current_sum
             
-            if abs(current_sum - target) == abs(res - target):
+            elif abs(current_sum - target) == abs(res - target):
                 
                 res = min(current_sum, res)
             
