@@ -19,7 +19,6 @@ class Solution:
         
         while q and stops <= k+1:
             
-            print(q)
             for _ in range(len(q)):
                 
                 current = q.popleft()
