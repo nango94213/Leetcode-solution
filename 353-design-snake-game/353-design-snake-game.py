@@ -23,7 +23,7 @@ class SnakeGame:
         
         current_food = self.food[self.food_index] if self.food_index < len(self.food) else None
         
-        if self.food_index < len(self.food) and (self.food[self.food_index][0] == newHead[0]) and (self.food[self.food_index][1] == newHead[1]):
+        if current_food and (current_food[0] == newHead[0]) and (current_food[1] == newHead[1]):
             self.food_index += 1
         else:
             tail = self.snake.pop()
