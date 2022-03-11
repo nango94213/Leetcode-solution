@@ -14,4 +14,4 @@ class Solution(object):
                 if (i - j) >= 0:
                     dp[i] = min(dp[i], dp[i-j] + 1)
         
-        return dp[amount] if dp[amount] != float('inf') else -1
+        return dp[-1] if dp[-1] != float('inf') else -1
