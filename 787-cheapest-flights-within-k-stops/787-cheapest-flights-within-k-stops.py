@@ -1,48 +1,45 @@
 import collections
 class Solution:
     def findCheapestPrice(self, n: int, flights: List[List[int]], src: int, dst: int, k: int) -> int:
+        res = float('inf')
         
-        
-        
-        dic = collections.defaultdict(list)
+        dic = collections.defaultdict(collections.defaultdict)
         
         for f in flights:
-            dic[f[0]].append((f[1], f[2]))
+            dic[f[0]][f[1]] = f[2]
         
         
-   
+        stops = 0
         
         q = collections.deque([src])
         
-        steps = 0
-        min_price = float('inf')
-        dp = collections.defaultdict(lambda: float('inf'))
-        dp[(src, 0)] = 0
-        while q and steps<=k+1:
+        cost = collections.defaultdict(lambda: float('inf'))
+        
+        cost[(src, 0)] = 0
+        
+        while q and stops <= k+1:
+            
+            print(q)
             for _ in range(len(q)):
-                
                 
                 current = q.popleft()
                 
-          
                 if current == dst:
-                    min_price = min(min_price, dp[(current, steps)])
-          
-          
-                 
-                for outgoing in dic[current]:
-                    cost_now = dp[(current, steps)] 
-                    cost_outgoing = dp[(outgoing[0], steps+1)] 
+
+                    res = min(res, cost[(current, stops)])
+                
+                for outgoing in dic[current].keys():
+      
+                    current_cost = cost[(current, stops)]
+                    next_cost = dic[current][outgoing]
                     
-                    if outgoing[1] + cost_now < cost_outgoing:
-                        q.append(outgoing[0])
-                        dp[(outgoing[0], steps+1)] = outgoing[1] + cost_now
-          
-            steps += 1
+                    if current_cost + next_cost < cost[(outgoing, stops+1)]:
+                        q.append(outgoing)
+                        
+                        cost[(outgoing, stops+1)] = current_cost + next_cost
+            
+            stops += 1
         
-        return min_price if min_price != float('inf') else -1
-                
-            
-                
-            
-            
+        return res if res != float('inf') else -1
+                    
+        
