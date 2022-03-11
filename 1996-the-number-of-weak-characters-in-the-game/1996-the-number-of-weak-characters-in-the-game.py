@@ -9,7 +9,7 @@ class Solution:
         
         stack = []
         
-        for a, c in properties:
+        for c in [i[1] for i in properties]:
             while stack and stack[-1] < c:
                 stack.pop()
                 total += 1
