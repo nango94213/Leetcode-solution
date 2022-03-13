@@ -26,7 +26,8 @@ class Solution:
             res = max(res, color_matrix[current][color_index])
             
             for next_node in outgoing[current]:
-                color_matrix[next_node] = [max(x,y) for x, y in zip(color_matrix[next_node], color_matrix[current])]
+         
+                color_matrix[next_node] = [max(color_matrix[next_node][i],color_matrix[current][i]) for i in range(26)]
                 indegree[next_node] -= 1
                 
                 if indegree[next_node] == 0:
