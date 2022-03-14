@@ -9,38 +9,12 @@ class Solution:
         
         if not root:
             return 0
-        depth = 0
         
-        check = root
-        
-        while check.left :
-            depth += 1
-            check = check.left
-        
-        def exist(index, node):
-            l, r = 0, 2**depth - 1
-            for _ in range(depth):
-                mid = (l+r) // 2
-                if index <= mid:
-                    node = node.left
-                    r = mid
-                else:
-                    node = node.right
-                    l = mid + 1
-             
+        def dfs(node):
             
-            return node is not None
-                
-        
-        
-        left, right = 1, 2**depth - 1
-        
-        while left <= right:
-            mid = (left+right) // 2
+            if not node:
+                return 0
             
-            if exist(mid,  root):
-                left = mid + 1
-            else:
-                right = mid - 1
+            return 1 + dfs(node.left) + dfs(node.right)
         
-        return 2**depth - 1 + left
+        return dfs(root)
