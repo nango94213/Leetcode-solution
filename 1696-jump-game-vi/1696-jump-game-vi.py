@@ -2,7 +2,7 @@ import collections
 class Solution:
     def maxResult(self, nums: List[int], k: int) -> int:
         
-        dp = [-float('inf')] * len(nums)
+        dp = [0] * len(nums)
         dp[0] = nums[0]
         
         q = collections.deque([0])
