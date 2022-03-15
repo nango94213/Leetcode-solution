@@ -26,7 +26,7 @@ class Solution:
                 if current == dst:
 
                     res = min(res, cost[(current, stops)])
-                    continue
+                    #continue
                 
                 for outgoing in dic[current].keys():
       
