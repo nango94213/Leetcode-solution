@@ -26,12 +26,12 @@ class Solution:
                 if current == dst:
 
                     res = min(res, cost[(current, stops)])
-                    #continue
+                    continue
                 
-                for outgoing in dic[current].keys():
+                for outgoing, value in dic[current].items():
       
                     current_cost = cost[(current, stops)]
-                    next_cost = dic[current][outgoing]
+                    next_cost = value
                     
                     if current_cost + next_cost < cost[(outgoing, stops+1)]:
                         q.append(outgoing)
