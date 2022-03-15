@@ -9,13 +9,13 @@ class Solution:
         
         while i < len(s):
             
-            if i == 0 or s[i] != s[i-1]:
+            if i != 0 and s[i] == s[i-1]:
                 
-                stack.append(1)
+                stack[-1] += 1
             
             else:
                 
-                stack[-1] += 1
+                stack.append(1)
                 
             if stack[-1] == k:
                     
