@@ -28,7 +28,7 @@ class Solution:
                 
                 if is_forward:
                     next_jump = current - b
-                    if next_jump > 0 and (next_jump, False) not in seen:
+                    if next_jump >= 0 and (next_jump, False) not in seen:
                         q.append((next_jump, False))
                         seen.add((next_jump, False))
             
