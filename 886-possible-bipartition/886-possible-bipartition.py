@@ -12,7 +12,7 @@ class Solution:
         for i in range(1, n+1):
             if i not in seen:
                 stack = collections.deque([(i, True)])
-                #two_group[i] = True
+                two_group[i] = True
                 while stack:
                     person, group = stack.popleft()    
                     seen.add(person)
