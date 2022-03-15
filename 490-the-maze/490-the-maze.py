@@ -13,7 +13,7 @@ class Solution:
                 new_x = i
                 new_y = j
 
-                while 0 <= new_x + d[0] < rows and 0 <= new_y + d[1] < cols and maze[new_x+d[0]][new_y+d[1]] != 1:
+                while 0 <= new_x + d[0] < rows and 0 <= new_y + d[1] < cols and maze[new_x+d[0]][new_y+d[1]] == 0:
                     new_x += d[0]
                     new_y += d[1]
                     
