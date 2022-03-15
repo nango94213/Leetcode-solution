@@ -5,7 +5,7 @@ class Solution:
         for i in pushed:
             stack.append(i)
             
-            while stack and stack[-1] == popped[index]:
+            while stack and stack[-1] == popped[index] and index < len(popped):
                 stack.pop()
                 index += 1
         
