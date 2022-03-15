@@ -9,11 +9,14 @@ class Solution:
         res = []
         
         def dfs(pool, path, current):
-            if pool:
+                if not pool:
+                    return
+
                 
-                if not pool.left and not pool.right and current == pool.val:
-                    path.append(pool.val)
-                    res.append(path)
+                if not pool.left and not pool.right:
+                    if current == pool.val:
+                        path.append(pool.val)
+                        res.append(path)
                     return
                 
                 dfs(pool.left, path + [pool.val], current - pool.val)
