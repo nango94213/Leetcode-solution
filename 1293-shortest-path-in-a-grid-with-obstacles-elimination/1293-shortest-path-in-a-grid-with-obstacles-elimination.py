@@ -5,7 +5,7 @@ class Solution:
         cols = len(grid[0])
         q = collections.deque([(0,0,k)])
         directions = [(0, -1), (-1, 0), (0, 1), (1, 0)]
-        seen = set((0,0))
+        seen = set((0,0,k))
         
         target = (len(grid)-1,len(grid[0])-1)
         
