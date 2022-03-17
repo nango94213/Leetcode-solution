@@ -26,7 +26,7 @@ class Solution:
                 falling=0
                 for i in range(m-1,-1,-1):
                     if (i,j) in crush:
-                        crush.remove((i,j))
+                        
                         falling+=1
                     else:
                          board[i+falling][j]=board[i][j]
