@@ -15,14 +15,14 @@ class Solution:
                 two_group[i] = True
                 while stack:
                     person, group = stack.popleft()    
-                    seen.add(person)
+                    
                     for child in graph[person]:
                             if child in two_group and (two_group[child] != (not group)):
                                              return False
                             two_group[child] = not group
                             if child not in seen:
 
-                                        
+                                        seen.add(child)
                                         stack.append((child, not group))
                                         
                     
