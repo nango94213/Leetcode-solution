@@ -5,8 +5,7 @@ class Solution:
         col_n=len(board[0])
         
         def dfs(i,j):
-            if board[i][j]!='E':
-                return
+        
             
             count=0
             
@@ -26,7 +25,7 @@ class Solution:
             for d in direction:
                 x=i+d[0]
                 y=j+d[1]
-                if 0<=x<row_n and 0<=y<col_n:
+                if 0<=x<row_n and 0<=y<col_n and board[x][y]=='E':
                      dfs(x,y)
                         
         if board[click[0]][click[1]]=='M':
