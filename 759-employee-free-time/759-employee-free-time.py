@@ -16,10 +16,7 @@ class Solution:
         b = current.end
         for i in h[1:]:
             if b < i.start:
-                tmp = Interval()
-                tmp.start = b
-                tmp.end = i.start
-                res.append(tmp)
+                res.append(Interval(b, i.start))
                 b = i.end
             else:
                 b = max(b, i.end)
