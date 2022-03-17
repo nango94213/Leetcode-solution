@@ -4,38 +4,36 @@ class Solution:
         row_n=len(board)
         col_n=len(board[0])
         
-        def dfs(i,j):
-        
+        def dfs(x, y):
             
-            count=0
-            
+            count = 0
             for d in direction:
-                x=i+d[0]
-                y=j+d[1]
                 
-                if 0<=x<row_n and 0<=y<col_n and board[x][y]=='M':
-                    count+=1
+                new_x = x + d[0]
+                new_y = y + d[1]
+                
+                if 0 <= new_x < row_n and 0 <= new_y < col_n and board[new_x][new_y] == 'M':
+                    count += 1
             
             if count:
-                board[i][j]=str(count)
-                return
+                board[x][y] = str(count)
+                return 
             
-            board[i][j]='B'
-            
+            board[x][y] = 'B'
             for d in direction:
-                x=i+d[0]
-                y=j+d[1]
-                if 0<=x<row_n and 0<=y<col_n and board[x][y]=='E':
-                     dfs(x,y)
-                        
-        if board[click[0]][click[1]]=='M':
-            board[click[0]][click[1]]='X'
+                
+                new_x = x + d[0]
+                new_y = y + d[1]
+                
+                if 0 <= new_x < row_n and 0 <= new_y < col_n and board[new_x][new_y] == 'E':
+                    dfs(new_x, new_y)
+        
+        
+        if board[click[0]][click[1]] == 'M':
+            board[click[0]][click[1]] = 'X'
             return board
         
-        dfs(click[0],click[1])
+        if board[click[0]][click[1]] == 'E':
+            dfs(click[0], click[1])
         
         return board
-                
-                
-                
-        
