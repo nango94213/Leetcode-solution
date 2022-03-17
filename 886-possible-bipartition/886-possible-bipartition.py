@@ -13,6 +13,7 @@ class Solution:
             if i not in seen:
                 stack = collections.deque([(i, True)])
                 two_group[i] = True
+                seen.add(i)
                 while stack:
                     person, group = stack.popleft()    
                     
