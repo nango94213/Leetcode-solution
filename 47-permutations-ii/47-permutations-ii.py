@@ -3,7 +3,7 @@ class Solution:
         res=[]
         
         def dfs(pool,path):
-            if len(path) == len(nums):
+            if not pool:
                 res.append(path)
             
             for i in range(len(pool)):
