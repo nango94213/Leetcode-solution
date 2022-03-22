@@ -9,24 +9,19 @@ class Solution:
         
         while i < len(s):
             
-            if i != 0 and s[i] == s[i-1]:
-                
+            if stack and s[i] == s[i-1]:
                 stack[-1] += 1
-            
-            else:
-                
-                stack.append(1)
-                
-            if stack[-1] == k:
-                    
+                if stack[-1] == k:
                     stack.pop()
                     
                     del s[i-k+1:i+1]
                     
                     i -= k
+                    
+            
+            else:
+                stack.append(1)
             
             i += 1
         
         return ''.join(s)
-                
-                
