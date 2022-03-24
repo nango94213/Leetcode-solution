@@ -8,9 +8,12 @@ class Solution:
         while left < right:
             res = max(res, (right-left)*min(height[left], height[right]))
             
-            if height[left] <= height[right]:
+            if height[left] < height[right]:
                 left += 1
+            elif height[left] > height[right]:
+                right -= 1
             else:
+                left += 1
                 right -= 1
         
         return res
