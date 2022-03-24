@@ -5,42 +5,43 @@ class Solution(object):
         :rtype: List[List[int]]
         """
         
+        res = []
         nums.sort()
         
-        res = []
-        
-        def twosum(i):
-            l = i + 1
-            r = len(nums) - 1
+        def twosum(index):
             
-            while l < r:
-                total = nums[i] + nums[l] + nums[r]
+            left = index + 1
+            right = len(nums) - 1
+            
+            while left < right:
+                sum_three = nums[index] + nums[left] + nums[right]
                 
-                if total == 0:
-                    res.append([nums[i], nums[l], nums[r]])
+                if sum_three == 0:
+                    res.append([nums[index], nums[left], nums[right]])
                     
-                    l += 1
-                    r -= 1
+                    left += 1
+                    right -= 1
                     
-                    while l < r and nums[l-1] == nums[l]:
-                        l += 1
+                    while left < right and nums[left] == nums[left-1]:
+                        left += 1
                     
-                    while l < r and nums[r+1] == nums[r]:
-                        r -= 1
-                
-                elif total > 0:
-                    r -= 1
+                    while left < right and nums[right] == nums[right+1]:
+                        right -= 1
+                    
+                elif sum_three < 0:
+                    left += 1
                 else:
-                    l += 1
+                    right -= 1
+        
         
         for i in range(len(nums)):
+            
             if nums[i] > 0:
                 break
             
-            if i == 0 or nums[i] != nums[i-1]:
-                twosum(i)
+            if i != 0 and nums[i] == nums[i-1]:
+                continue
+            
+            twosum(i)
         
         return res
-                        
-                
-                
