@@ -14,5 +14,6 @@ class Solution:
                 for j in range(i):
                     if s[:j+1] in dp and s[j+1:i+1] in word_set:
                         dp.add(s[:i+1])
+                        break
         
         return s in dp
