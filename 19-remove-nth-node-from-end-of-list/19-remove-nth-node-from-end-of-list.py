@@ -21,8 +21,7 @@ class Solution:
             second = second.next
             first = first.next
             
-        if second and second.next:
-            second.next = second.next.next
+        second.next = second.next.next
    
         
         return dummy.next
