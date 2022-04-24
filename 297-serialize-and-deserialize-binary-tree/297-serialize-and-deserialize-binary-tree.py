@@ -13,17 +13,20 @@ class Codec:
         :type root: TreeNode
         :rtype: str
         """
+        
         res = []
         
-        def to_string(node):
+        def dfs(node):
+            
             if node:
                 res.append(str(node.val))
-                to_string(node.left)
-                to_string(node.right)
+                
+                dfs(node.left)
+                dfs(node.right)
             else:
                 res.append('None')
         
-        to_string(root)
+        dfs(root)
         
         return ','.join(res)
         
@@ -34,27 +37,27 @@ class Codec:
         :type data: str
         :rtype: TreeNode
         """
-        
-        def to_tree():
+        def dfs():
             if l:
                 val = l.popleft()
+                
                 if val == 'None':
                     return 
-            
+                
                 root = TreeNode(val)
-            
-            
-                root.left = to_tree()
-                root.right = to_tree()
-            
+                
+                root.left = dfs()
+                root.right = dfs()
+                
                 return root
+
+        
+        
         
         l = data.split(',')
         l = collections.deque(l)
         
-        return to_tree()
-                
-        
+        return dfs()
         
 
 # Your Codec object will be instantiated and called as such:
