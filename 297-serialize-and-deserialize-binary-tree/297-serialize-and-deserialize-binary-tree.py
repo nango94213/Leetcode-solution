@@ -39,7 +39,7 @@ class Codec:
             if l:
                 val = l.popleft()
                 if val == 'None':
-                    return 
+                    return None
             
                 root = TreeNode(val)
             
@@ -51,8 +51,9 @@ class Codec:
         
         l = data.split(',')
         l = collections.deque(l)
-        
-        return to_tree()
+        gg = to_tree()
+
+        return gg
                 
         
         
