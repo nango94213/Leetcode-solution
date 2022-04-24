@@ -13,6 +13,7 @@ class Solution:
         res = -float('inf')
         
         def dfs(node):
+            
             nonlocal res
             if not node:
                 return 0
