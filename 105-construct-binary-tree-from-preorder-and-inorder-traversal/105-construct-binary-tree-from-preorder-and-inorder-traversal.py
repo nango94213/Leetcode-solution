@@ -13,14 +13,17 @@ class Solution:
             dic[v] = i
         
         
-        def dfs(sub_inorder):
-            if sub_inorder:
-                current_val = preorder.pop(0)
-                index = dic[current_val] - dic[sub_inorder[0]]
-                root = TreeNode(current_val)
+        def dfs(sub):
             
-                root.left = dfs(sub_inorder[:index])
-                root.right = dfs(sub_inorder[index+1:])
+            if sub:
+                current =  preorder.pop(0)
+            
+                index = dic[current] - dic[sub[0]]
+            
+                root = TreeNode(current)
+            
+                root.left = dfs(sub[:index])
+                root.right = dfs(sub[index+1:])
             
                 return root
         
