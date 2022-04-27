@@ -15,18 +15,15 @@ class Solution:
         def dfs(node):
             
             if node:
-                heapq.heappush(h, -node.val)
-                
-                if len(h) > k:
-                    heapq.heappop(h)
           
                 
                 dfs(node.left)
+                h.append(node.val)
                 dfs(node.right)
         
         
         dfs(root)
-    
-        return -h[0]
+
+        return h[k-1]
         
         
