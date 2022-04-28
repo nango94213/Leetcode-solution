@@ -10,6 +10,7 @@ class Trie:
         for w in word:
             if w not in tmp:
                 tmp[w] = {}
+                tmp[w]['.'] = {}
                 
             tmp = tmp[w]
         
