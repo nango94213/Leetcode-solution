@@ -13,7 +13,7 @@ class Solution:
                 count[o] = 0
         
         for c in count:
-  
+            if count[c] > 0:
                 
                 res.append(c*count[c])
         
