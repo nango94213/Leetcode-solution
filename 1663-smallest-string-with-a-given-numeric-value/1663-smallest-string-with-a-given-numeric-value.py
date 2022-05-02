@@ -3,7 +3,7 @@ class Solution:
         
         #print(chr(97))
         
-        res = ''
+        res = [None] * n
         
         while n > 0:
             n -= 1
@@ -13,8 +13,8 @@ class Solution:
             if candidate > 26:
                 candidate = 26
 
-            res = chr(96+candidate) + res
+            res[n] = chr(96+candidate) 
             
             k -= candidate
         
-        return res
+        return ''.join(res)
