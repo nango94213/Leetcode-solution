@@ -24,6 +24,7 @@ class Solution:
         p_parent = set()
         
         tmp = p
+        
         while tmp != -1:
             p_parent.add(tmp)
             
