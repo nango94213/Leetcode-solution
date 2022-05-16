@@ -18,11 +18,11 @@ class Solution:
             left = dfs(node.left)
             right = dfs(node.right)
             
-            current_level = max(left, right)
+            current_level = max(left, right) + 1
             
             dic[current_level].append(node.val)
             
-            return current_level + 1
+            return current_level
         
         dfs(root)
         
