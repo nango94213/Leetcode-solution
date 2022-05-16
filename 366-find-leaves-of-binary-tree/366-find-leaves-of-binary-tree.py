@@ -10,7 +10,6 @@ class Solution:
         
         dic = collections.defaultdict(list)
         
-        
         def dfs(node):
             
             if not node:
@@ -19,17 +18,14 @@ class Solution:
             left = dfs(node.left)
             right = dfs(node.right)
             
-            level = max(left, right) + 1
+            current_level = max(left, right)
             
-            dic[level].append(node.val)
+            dic[current_level].append(node.val)
             
-            return level
+            return current_level + 1
         
         dfs(root)
         
         return dic.values()
-            
-            
-        
         
         
