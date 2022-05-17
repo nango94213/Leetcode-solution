@@ -6,7 +6,7 @@ class Solution:
         operations = {
         "+": lambda a, b: a + b,
         "-": lambda a, b: a - b,
-        "/": lambda a, b: int(a/b),
+        "/": lambda a, b: int(a / b),
         "*": lambda a, b: a * b}
         
         
@@ -25,7 +25,7 @@ class Solution:
             
             else:
                 stack.append(int(token))
-        print(stack)
-        return stack[0]
+      
+        return stack.pop()
 
                 
