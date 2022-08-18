@@ -2,21 +2,19 @@ class OrderedStream:
 
     def __init__(self, n: int):
         self.result = [0] * n
-        self.ptr = 0
-        
+        self.plt = 0
 
     def insert(self, idKey: int, value: str) -> List[str]:
         index = idKey - 1
-        
         self.result[index] = value
         
-        if index > self.ptr:
+        if index > self.plt:
             return []
         
-        while self.ptr < len(self.result) and self.result[self.ptr]:
-            self.ptr += 1
+        while self.plt < len(self.result) and self.result[self.plt]:
+            self.plt += 1
         
-        return self.result[index:self.ptr]
+        return self.result[index:self.plt]
         
 
 
