@@ -2,18 +2,15 @@ import random
 class RandomizedSet:
 
     def __init__(self):
-        
-        self.value = []
         self.dic = {}
+        self.number = []
 
     def insert(self, val: int) -> bool:
-        
         if val in self.dic:
             return False
         
-        self.value.append(val) 
-        self.dic[val] = len(self.value) - 1
-        
+        self.dic[val] = len(self.number)
+        self.number.append(val)
         return True
 
     def remove(self, val: int) -> bool:
@@ -21,21 +18,18 @@ class RandomizedSet:
         if val not in self.dic:
             return False
         
-        last, index = self.value[-1], self.dic[val]
+        index, lastNumber = self.dic[val], self.number[-1]
         
-        self.value[index], self.dic[last] = last, index
-        
-        self.value.pop()
-        
+        self.number[index], self.dic[lastNumber] = lastNumber, index
+        self.number.pop()
         del self.dic[val]
         
         return True
         
 
-
     def getRandom(self) -> int:
         
-        return random.choice(self.value)
+        return random.choice(self.number)
         
 
 
