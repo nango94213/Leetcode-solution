@@ -35,5 +35,5 @@ class Solution:
         
         fake.next.prev = None
         
-        return fake.next
+        return head
             
