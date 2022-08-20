@@ -33,7 +33,7 @@ class Solution:
             
             pre = current
         
-        fake.next.prev = None
+        head.prev = None
         
         return head
             
