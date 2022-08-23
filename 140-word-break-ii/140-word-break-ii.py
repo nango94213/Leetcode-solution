@@ -3,7 +3,20 @@ class Solution:
         
         wordDict = set(wordDict)
         
-        
+        def check(g):
+            
+            dp = [False] * len(g)
+            
+            for i in range(len(g)):
+                if g[:i+1] in wordDict:
+                    dp[i] = True
+                    continue
+                
+                for j in range(i):
+                    if g[:j+1] in wordDict:
+                        dp[i] = True
+                        break
+            return dp[-1]
         
         
         res = []
@@ -12,6 +25,10 @@ class Solution:
             
             if not pool:
                 res.append(path[1:])
+                return
+            
+            if not check(pool):
+                return
             
             for i in range(len(pool)):
                 
