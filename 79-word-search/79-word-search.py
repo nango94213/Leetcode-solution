@@ -10,30 +10,28 @@ class Solution:
             if len(s) == 1:
                 return True
             
-            
             board[x][y] = '#'
             
             for d in directions:
                 
-                newx = x + d[0]
-                newy = y + d[1]
+                i = x + d[0]
+                j = y + d[1]
                 
-                if 0 <= newx < rows and 0 <= newy < cols and board[newx][newy] == s[1]:
+                if 0 <= i < rows and 0 <= j < cols and board[i][j] == s[1]:
                     
-                    if dfs(newx, newy, s[1:]):
+                    if dfs(i, j, s[1:]):
+                        
                         return True
-                
+            
             board[x][y] = s[0]
+            
             return False
-        
         
         for i in range(rows):
             for j in range(cols):
                 
-                if board[i][j] == word[0]:
-                    
-                    if dfs(i, j, word):
-                        return True
+                if board[i][j] == word[0] and dfs(i, j, word):
+                    return True
         
         return False
             
