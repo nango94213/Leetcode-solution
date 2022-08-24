@@ -1,5 +1,6 @@
 class Solution:
     def minRemoveToMakeValid(self, s: str) -> str:
+        
         stack = []
         remove = set()
         
@@ -13,16 +14,15 @@ class Solution:
                 
                 if stack:
                     stack.pop()
-                else:
-                    
-                    remove.add(i)
-        
+                    continue
+    
+                remove.add(i)
         remove.update(stack)
         res = []
-
-        for i, v in enumerate(s):
+        
+        for i in range(len(s)):
             
             if i not in remove:
-                res.append(v)
+                res.append(s[i])
         
         return ''.join(res)
