@@ -8,10 +8,11 @@ class Solution:
         for i in intervals:
             
             if stack and stack[-1][1] >= i[0]:
+                
                 stack[-1][1] = max(stack[-1][1], i[1])
+                
+                continue
             
-            else:
-                stack.append(i)
+            stack.append(i)
         
         return stack
-        
