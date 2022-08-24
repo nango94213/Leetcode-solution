@@ -4,17 +4,18 @@ class Solution(object):
         :type s: str
         :rtype: int
         """
-        
         dic = {}
+        
         left = 0
         res = 0
-        for i in  range(len(s)):
+        
+        for right in range(len(s)):
             
-            if s[i] in dic:
-                left = max(left, dic[s[i]]+1)
+            if s[right] in dic:
+                left = max(left, dic[s[right]]+1)
             
-            res = max(res, i-left+1)
+            dic[s[right]] = right
             
-            dic[s[i]] = i
+            res = max(res, right-left+1)
         
         return res
