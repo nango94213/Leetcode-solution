@@ -9,11 +9,12 @@ class Solution:
         ans = [[0] * n for _ in range(m)]
 
         for i in range(m):
-            for j in range(n):
+            
                 
                 for p in range(k):
-                    
-                    ans[i][j] += mat1[i][p] * mat2[p][j]
+                    if mat1[i][p]:
+                        for j in range(n):
+                               ans[i][j] += mat1[i][p] * mat2[p][j]
         
         return ans
                 
