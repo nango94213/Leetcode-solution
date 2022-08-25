@@ -6,12 +6,13 @@ class Solution:
         stack = []
         
         for i in s:
-            if i not in dic:
-                if stack and dic[stack[-1]] == i:
-                    stack.pop()
-                else:
-                    return False
-            else:
+            if i in dic:
                 stack.append(i)
+                continue
+            
+            if not stack or dic[stack[-1]] != i:
+                return False
+            
+            stack.pop()
         
-        return stack == []
+        return len(stack) == 0
