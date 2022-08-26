@@ -1,32 +1,27 @@
 class Solution:
     def maximumPopulation(self, logs: List[List[int]]) -> int:
         
-        res = []
-    
+        allYear = []
         
-        for i in range(len(logs)):
-            
-            res.append((logs[i][0], True))
-            res.append((logs[i][1], False))
-
+        for i in logs:
+            allYear.append((i[0], True))
+            allYear.append((i[1], False))
         
-        res.sort()
+        allYear.sort()
         
+        res = allYear[0]
+        maxPopulation = 0
         count = 0
-        final = 0
-        year = 0
-   
-        for i in res:
+        
+        for y in allYear:
             
-            if i[1]:
+            if y[1]:
                 count += 1
             else:
                 count -= 1
             
-            if count > final:
-                year = i[0]
-                final = count
+            if count > maxPopulation:
+                maxPopulation = count
+                res = y[0]
         
-        return year
-            
-            
+        return res
