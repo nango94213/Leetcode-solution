@@ -17,8 +17,8 @@ class Solution:
                     
                 return dfs(node.left, low, node.val) and dfs(node.right, node.val ,high)
             
-            else:
-                return True
+      
+            return True
         
         return dfs(root, -float('inf'), float('inf'))
                 
