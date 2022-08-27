@@ -2,43 +2,48 @@ import collections
 class Solution:
     def calcEquation(self, equations: List[List[str]], values: List[float], queries: List[List[str]]) -> List[float]:
         
+        res = []
         graph = collections.defaultdict(defaultdict)
         
         for e, v in zip(equations, values):
             graph[e[0]][e[1]] = v
-            graph[e[1]][e[0]] = 1/v
+            graph[e[1]][e[0]] = 1 / v
+            
         
-        
-        def bfs(start, end):
+        def bfs(start, target):
             
             q = collections.deque([(start, 1.0)])
+            
             seen = set([start])
+            
             while q:
                 
-                current, product = q.popleft()
+                current, value = q.popleft()
                 
-                if current == end:
-                    return product
+                if current == target:
+                    return value
                 
-                for neighbor, value in graph[current].items():
+                for neighbor in graph[current]:
                     if neighbor not in seen:
+                        
                         seen.add(neighbor)
-                        q.append((neighbor, product*value))
-            return -1.0
+                        q.append((neighbor, value * graph[current][neighbor]))
+            
+            return  -1.0
         
-        res = []
-        for q in queries:
-            s, e = q
-            if (s not in graph) or (e not in graph):
+        for s, t in queries:
+            if s not in graph or t not in graph:
                 res.append(-1.0)
-            elif s == e:
+                continue
+            
+            if s == t:
                 res.append(1.0)
+                continue
             
-            
-            
-            else:
-                res.append(bfs(s, e))
+            res.append(bfs(s, t))
         
         return res
+        
             
+        
         
