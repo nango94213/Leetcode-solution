@@ -18,14 +18,13 @@ class Solution:
         
         while q:
             
-            count = 0
+
             size = len(q)
-            for _ in range(size):
+            for i in range(size):
                 
                 current = q.popleft()
-                count += 1
-                
-                if q and count < size:
+
+                if i < size - 1:
                     
                     current.next = q[0]
                 
