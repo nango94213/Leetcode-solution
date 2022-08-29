@@ -24,6 +24,8 @@ class Solution:
             pre.next = current
             current.prev = pre
             
+            pre = pre.next
+            
             if current.next:
                 stack.append(current.next)
             
@@ -31,7 +33,7 @@ class Solution:
                 stack.append(current.child)
                 current.child = None
             
-            pre = current
+            
         
         head.prev = None
         
