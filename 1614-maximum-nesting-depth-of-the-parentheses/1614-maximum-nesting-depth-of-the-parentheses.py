@@ -3,20 +3,20 @@ class Solution:
         
         stack = []
         res = 0
-        count = 0
+  
         
         for c in s:
             
             if c == '(':
                 
                 stack.append(c)
-                count += 1
-                res = max(res, count)
+     
+                res = max(res, len(stack))
             
             if c == ')':
                 
                 stack.pop()
-                count -= 1
+          
         
         return res
                 
