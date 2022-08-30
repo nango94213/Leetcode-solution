@@ -5,7 +5,7 @@ class Solution:
         """
         direction=[(-1,-1),(-1,0),(-1,1),(0,-1),(0,1),(1,-1),(1,0),(1,1)]
         
-        copyBoard = copy.deepcopy(board)
+        copyBoard = deepcopy(board)
         
         m, n = len(board), len(board[0])
         
