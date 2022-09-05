@@ -6,10 +6,17 @@ class Solution(object):
         :type k: int
         :rtype: List[List[int]]
         """
-        heap=[]
-        for i, v in enumerate(points):
-            distance=-(v[0]**2+v[1]**2)
-            heapq.heappush(heap,(distance,i))
-            if len(heap)>k:
+        heap = []
+        
+        for p in points:
+            distance = ((p[0]-0)**2+(p[1]-0)**2)**0.5
+            
+            heapq.heappush(heap, (-distance, p))
+            
+            if len(heap) > k:
                 heapq.heappop(heap)
-        return [points[x[1]] for x in heap]
+        
+        return [x[1] for x in heap]
+        
+                
+        
