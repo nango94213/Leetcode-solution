@@ -9,7 +9,7 @@ class Solution(object):
         heap = []
         
         for p in points:
-            distance = ((p[0]-0)**2+(p[1]-0)**2)**0.5
+            distance = ((p[0]-0)**2+(p[1]-0)**2)
             
             heapq.heappush(heap, (-distance, p))
             
