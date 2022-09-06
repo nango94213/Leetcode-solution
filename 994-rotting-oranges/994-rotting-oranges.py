@@ -22,14 +22,11 @@ class Solution:
         q.append((-1, -1))
         
         while q: 
-                x, y = q.popleft()
+                for _ in range(len(q)):   
                 
-                if x == -1:
-                    minutes += 1
-                    
-                    if q:
-                        q.append((-1, -1))
-                else:
+                    x, y = q.popleft()
+                
+               
                     for d in directions:
                         new_x = x + d[0]
                         new_y = y + d[1]
@@ -38,5 +35,6 @@ class Solution:
                             grid[new_x][new_y] = 2
                             good -= 1
                             q.append((new_x, new_y))
+                minutes += 1
         return minutes if not good else -1
         
