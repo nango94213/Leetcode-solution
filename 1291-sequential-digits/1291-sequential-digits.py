@@ -3,26 +3,22 @@ class Solution:
         
         res = []
         
-        def dfs(path):
-            
-            if low <= path <= high:
-                res.append(path)
-            
-            if path > high:
-                return 
-            
-            if (path%10) == 9:
-                return 
-            
-            new = path * 10 + ((path%10) + 1)
-                
-            dfs(new)
         
-        for start in range(1, 9):
-            dfs(start)
+        def dfs(number):
+            
+            if low <= number <= high:
+                res.append(number)
+            
+            if number > high:
+                return
+            
+            if number % 10 == 9:
+                return
+            
+            dfs(number*10+(number%10+1))
         
+        
+        for i in range(1, 9):
+            dfs(i)
         
         return sorted(res)
-           
-        
-        
