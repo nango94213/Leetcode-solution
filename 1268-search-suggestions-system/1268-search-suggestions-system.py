@@ -1,10 +1,14 @@
 import bisect
 class Solution:
     def suggestedProducts(self, products: List[str], searchWord: str) -> List[List[str]]:
+        
         products.sort()
-        res, prefix, i = [], '', 0
+        res = []
+        prefix = ''
         for c in searchWord:
             prefix += c
-            i = bisect.bisect_left(products, prefix, i)
-            res.append([w for w in products[i:i + 3] if w.startswith(prefix)])
+            i = bisect.bisect_left(products, prefix)
+            
+            res.append([x for x in products[i:i+3] if x.startswith(prefix)])
+        
         return res
