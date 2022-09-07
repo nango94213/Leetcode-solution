@@ -17,7 +17,7 @@ class Solution:
         
         
         while q:
-            print(q)
+
             for _ in range(len(q)):
                 
                 x, y = q.popleft()
