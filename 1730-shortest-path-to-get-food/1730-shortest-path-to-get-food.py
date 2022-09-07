@@ -10,6 +10,7 @@ class Solution:
                     grid[i][j] = 'X'
                     q.append((i, j))
                     seen.add((i, j))
+                    break
         
         directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
         
