@@ -7,31 +7,39 @@
 from collections import deque
 class Solution:
     def distanceK(self, root: TreeNode, target: TreeNode, k: int) -> List[int]:
-        def dfs(node,par=None):
+        
+        def dfs(node, par):
             if node:
-                node.par=par
-                dfs(node.left,node)
-                dfs(node.right,node)
-        dfs(root)
-        q=deque([(target,0)])
-        seen={target}
-        while(len(q)>0):
-            if q[0][1]==k:
+                node.parent = par
+                dfs(node.left, node)
+                dfs(node.right, node)
+        
+        dfs(root, None)
+               
+        q = deque([(target, 0)])
+                    
+        seen = set([target])
+        
+        while q:
+            
+            
+            
+            if q[0][1] == k:
                 return [n[0].val for n in q]
             
-            node,d=q.popleft()
+            current, distance = q.popleft()
             
-    
-            if node.left and (node.left not in seen):
-                seen.add(node.left)
-                q.append((node.left,d+1))
-            if node.right and (node.right not in seen):
-                seen.add(node.right)
-                q.append((node.right,d+1))
-            if node.par and (node.par not in seen):
-                seen.add(node.par)
-                q.append((node.par,d+1))
-          
-
+            if current.left and current.left not in seen:
+                seen.add(current.left)
+                q.append((current.left, distance+1))
+                
+            if current.right and current.right not in seen:
+                seen.add(current.right)
+                q.append((current.right, distance+1))
+                
+            if current.parent and current.parent not in seen:
+                seen.add(current.parent)
+                q.append((current.parent, distance+1))
+        
         return []
         
