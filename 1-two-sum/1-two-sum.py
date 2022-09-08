@@ -3,12 +3,11 @@ class Solution:
         
         dic = {}
         
-        for i in range(len(nums)):
+        for i, v in enumerate(nums):
             
-            if target - nums[i] in dic:
-                return [i, dic[target-nums[i]]]
+            if (target-v) in dic:
+                return [i, dic[target-v]]
             
-            dic[nums[i]] = i
-        
+            dic[v] = i
         
         
