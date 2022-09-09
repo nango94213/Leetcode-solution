@@ -9,9 +9,8 @@ class Solution:
             
             if stack and stack[-1][1] >= i[0]:
                 stack[-1][1] = max(stack[-1][1], i[1])
-                continue
-            
-            stack.append(i)
+            else:
+                stack.append(i)
         
         return stack
         
