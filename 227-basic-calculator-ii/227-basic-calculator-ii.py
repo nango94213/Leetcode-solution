@@ -1,20 +1,28 @@
 class Solution:
     def calculate(self, s: str) -> int:
-        num,stack,sign=0,[],'+'
-        for i in range(len(s)):
+        stack = []
+        sign = '+'
+        num = 0
+        
+        for i, v in enumerate(s):
+            if v.isdigit():
+                num = num * 10 + int(v)
             
-            if s[i].isdigit():
-                num=num*10+int(s[i])
-            if s[i] in '+-*/' or i==len(s)-1:
-                if sign=='+':
+            if v in '+-/*' or i == len(s) - 1:
+                if sign == '+':
                     stack.append(num)
-                elif sign=='-':
+                
+                if sign == '-':
                     stack.append(-num)
-                elif sign=='/':
+                
+                if sign == '/':
                     stack.append(int(stack.pop()/num))
-                else:
+                
+                if sign == '*':
                     stack.append(stack.pop()*num)
-                num=0
-                sign=s[i]
-
+                
+                num = 0
+                sign = v
+        
         return sum(stack)
+        
