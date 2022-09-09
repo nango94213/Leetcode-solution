@@ -3,7 +3,7 @@ class Solution:
         
         nums.sort()
         
-        res = 0
+        res = 1
         start = nums[0]
         
         for n in nums:
@@ -12,5 +12,5 @@ class Solution:
                 res += 1
                 start = n
         
-        return res + 1
+        return res
         
