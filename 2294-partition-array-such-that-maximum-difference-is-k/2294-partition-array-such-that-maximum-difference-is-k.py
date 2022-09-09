@@ -1,14 +1,14 @@
 class Solution:
     def partitionArray(self, nums: List[int], k: int) -> int:
         
-        nums.sort()
+        nums.sort(reverse = True)
         
         res = 1
         start = nums[0]
         
         for n in nums:
             
-            if n - start > k:
+            if start - n > k:
                 res += 1
                 start = n
         
