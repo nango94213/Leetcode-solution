@@ -24,13 +24,13 @@ class Solution:
         second = None
  
         for i in range(len(res)-1):
-            
+     
             if res[i].val >= res[i+1].val and not first:
                 first = res[i]
                 
             
             if res[i].val >= res[i+1].val and first:
                 second = res[i+1]
-                
+
   
         first.val, second.val = second.val, first.val
