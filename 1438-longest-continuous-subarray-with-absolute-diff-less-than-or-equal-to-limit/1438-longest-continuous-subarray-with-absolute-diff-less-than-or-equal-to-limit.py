@@ -22,10 +22,10 @@ class Solution:
             while nums[currentMax[0]] - nums[currentMin[0]] > limit:
                 left += 1
                 
-                if left > currentMax[0]:
+                while left > currentMax[0]:
                     currentMax.popleft()
                 
-                if left > currentMin[0]:
+                while left > currentMin[0]:
                     currentMin.popleft()
             
             res = max(res, right-left+1)
