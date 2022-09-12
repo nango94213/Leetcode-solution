@@ -11,24 +11,23 @@ class RandomizedSet:
         
         self.dic[val] = len(self.number)
         self.number.append(val)
+
         return True
 
     def remove(self, val: int) -> bool:
-        
         if val not in self.dic:
             return False
         
-        index, lastNumber = self.dic[val], self.number[-1]
+        index, lastn = self.dic[val], self.number[-1]
         
-        self.number[index], self.dic[lastNumber] = lastNumber, index
+        self.number[index], self.dic[lastn] = lastn, index
+        
         self.number.pop()
         del self.dic[val]
         
         return True
-        
-
+    
     def getRandom(self) -> int:
-        
         return random.choice(self.number)
         
 
