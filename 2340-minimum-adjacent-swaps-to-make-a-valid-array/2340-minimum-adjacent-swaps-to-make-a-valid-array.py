@@ -1,24 +1,16 @@
 class Solution:
     def minimumSwaps(self, nums: List[int]) -> int:
         
-        left = min(nums)
-        right = max(nums)
+        left = 0
+        right = 0
         
-        r = len(nums) - 1
-        l = 0
-        for i in range(len(nums)-1, -1, -1):
-            if nums[i] == right:
-                r = i
-                break
+        n = len(nums)
+        for i in range(1, n):
+            
+            if nums[i] >= nums[right]:
+                right = i
+            
+            if nums[i] < nums[left]:
+                left = i
         
-        for i in range(len(nums)):
-            if nums[i] == left:
-                l = i
-                break
-    
-        if l > r:
-            return l + len(nums) - 1 - r - 1
-        else:
-            return l + len(nums) -1 - r
-        
-                
+        return left + n - 1 - right - 1 if left > right else left + n - 1 - right
