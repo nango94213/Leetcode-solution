@@ -15,8 +15,7 @@ class Solution:
             if nums[i] == left:
                 l = i
                 break
-        print(l)
-        print(r)
+    
         if l > r:
             return l + len(nums) - 1 - r - 1
         else:
