@@ -33,7 +33,7 @@ class Solution:
             
             res.append(level)
             left = not left
-            level = deque()
+
         
         return res
                 
