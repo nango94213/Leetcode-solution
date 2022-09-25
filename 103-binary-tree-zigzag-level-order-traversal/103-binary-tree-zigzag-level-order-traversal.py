@@ -11,12 +11,12 @@ class Solution:
         if not root:
             return []
         res = []
-        level = deque()
+        
         q = deque([root])
         left = True
         
         while q:
-            
+            level = deque()
             for _ in range(len(q)):
                 current = q.popleft()
                 
