@@ -10,10 +10,10 @@ class Solution:
         
         for right, value in enumerate(nums):
             
-            while currentMax and nums[currentMax[-1]] <= value:
+            while currentMax and nums[currentMax[-1]] < value:
                 currentMax.pop()
             
-            while currentMin and nums[currentMin[-1]] >= value:
+            while currentMin and nums[currentMin[-1]] > value:
                 currentMin.pop()
             
             currentMax.append(right)
