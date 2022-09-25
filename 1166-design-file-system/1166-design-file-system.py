@@ -2,8 +2,8 @@ import collections
 class FileSystem:
 
     def __init__(self):
-        self.dic = dict()
-        self.dic[""] = 100
+        self.dic = {}
+        self.dic[""] = -1
 
     def createPath(self, path: str, value: int) -> bool:
         if (path in self.dic) or ((path[:path.rfind("/")] not in self.dic)):
