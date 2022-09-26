@@ -27,7 +27,7 @@ class Solution:
             
             for _ in range(len(q)):
                 current = q.popleft()
-                print(d)
+         
                 if d == k:
                     res.append(current.val)
                     continue
