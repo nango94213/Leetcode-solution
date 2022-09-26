@@ -16,30 +16,34 @@ class Solution:
         
         dfs(root, None)
                
-        q = deque([(target, 0)])
+        q = deque([target])
                     
         seen = set([target])
         
-        while q:
+        d = 0
+        res = []
+
+        while q and d <= k:
             
+            for _ in range(len(q)):
+                current = q.popleft()
+                print(d)
+                if d == k:
+                    res.append(current.val)
+                    continue
             
-            
-            if q[0][1] == k:
-                return [n[0].val for n in q]
-            
-            current, distance = q.popleft()
-            
-            if current.left and current.left not in seen:
-                seen.add(current.left)
-                q.append((current.left, distance+1))
+                if current.left and current.left not in seen:
+                    seen.add(current.left)
+                    q.append(current.left)
                 
-            if current.right and current.right not in seen:
-                seen.add(current.right)
-                q.append((current.right, distance+1))
+                if current.right and current.right not in seen:
+                    seen.add(current.right)
+                    q.append(current.right)
                 
-            if current.parent and current.parent not in seen:
-                seen.add(current.parent)
-                q.append((current.parent, distance+1))
-        
-        return []
+                if current.parent and current.parent not in seen:
+                    seen.add(current.parent)
+                    q.append(current.parent)
+            d += 1
+
+        return res
         
