@@ -11,9 +11,10 @@ class Solution:
         def inn(node):
             if not node:
                 return 
-            inn(node.left)
             if node != root and not node.left and not node.right:
                 res.append(node.val)
+            inn(node.left)
+            
             inn(node.right)
         
         def left(node):
