@@ -1,7 +1,8 @@
+import collections
 class Solution:
     def numberOfWays(self, s: str) -> int:
         
-        dp = {'0': 0, '01': 0, '010': 0, '1': 0, '10': 0, '101': 0}
+        dp = collections.defaultdict(int)
         
         for c in s:
             if c == '0':
