@@ -7,27 +7,27 @@ class Solution:
         def dfs(x, y):
             
             count = 0
-            for d in direction:
-                
-                new_x = x + d[0]
-                new_y = y + d[1]
-                
-                if 0 <= new_x < row_n and 0 <= new_y < col_n and board[new_x][new_y] == 'M':
-                    count += 1
             
+            for d in direction:
+                i = x + d[0]
+                j = y + d[1]
+                
+                if 0 <= i < row_n and 0 <= j < col_n and board[i][j] == 'M':
+                    count += 1
+      
             if count:
                 board[x][y] = str(count)
-                return 
+                return
             
             board[x][y] = 'B'
+            
             for d in direction:
+                i = x + d[0]
+                j = y + d[1]
                 
-                new_x = x + d[0]
-                new_y = y + d[1]
+                if 0 <= i < row_n and 0 <= j < col_n and board[i][j] == 'E': 
+                    dfs(i, j)
                 
-                if 0 <= new_x < row_n and 0 <= new_y < col_n and board[new_x][new_y] == 'E':
-                    dfs(new_x, new_y)
-        
         
         if board[click[0]][click[1]] == 'M':
             board[click[0]][click[1]] = 'X'
@@ -35,5 +35,4 @@ class Solution:
         
         if board[click[0]][click[1]] == 'E':
             dfs(click[0], click[1])
-        
         return board
