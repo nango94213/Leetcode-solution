@@ -3,13 +3,9 @@ MOD = int(1e9+7)
 class Solution:
     def ways(self, pizza: List[str], k: int) -> int:
         m, n = len(pizza), len(pizza[0])
-        @cache
+        @functools.lru_cache(None)
         def has_apple(row, col, rowflag) -> bool:
-            """Return if a row or col has any apple.
-            
-            If rowflag is True, we search the row [(row, col), (row, col+1), ..., (row, n-1)]
-            If rowflag is False, we search the col [(row, col), (row+1, col), ..., (m-1, col)]
-            """
+
             if row >= m or col >= n:
                 return False
             elif pizza[row][col] == 'A':
@@ -19,19 +15,9 @@ class Solution:
             else:
                 return has_apple(row+1, col, rowflag)
                 
-        @cache
+        @functools.lru_cache(None)
         def count(top: int, left: int, k: int, cuttable: bool, direc: int) -> int:
-            """Return num of ways of cutting.
-            
-            For the submatrix with (top, left) and (m-1, n-1) as top-left and bottom-right points,
-            k = remaining pieces. When k = 1 means we can decide if it's a valid cutting.
-            cuttable = if we can take a cut now. If we cut, the current submatrix is left
-                       for further cutting.
-            direc =
-                0 -- arbitrary, immediately after a cut
-                1 -- we want to cut horizontally
-                2 -- we want to cut vertically
-            """
+
             if top == m or left == n:
                 return 0
             elif k == 1:
