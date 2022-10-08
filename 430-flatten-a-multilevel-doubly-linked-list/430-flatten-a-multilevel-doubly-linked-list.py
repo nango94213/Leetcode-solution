@@ -14,7 +14,7 @@ class Solution:
             return None
         
         stack = [head]
-        fake = Node(None, None, head, None)
+        fake = Node(None, None, None, None)
         
         pre = fake
         
