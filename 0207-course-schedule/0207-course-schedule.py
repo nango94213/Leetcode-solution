@@ -32,6 +32,5 @@ class Solution(object):
                 if indegree[o] == 0:
                     q.append(o)
         
-        return True if count == n else False
-            
+        return count == n
             
