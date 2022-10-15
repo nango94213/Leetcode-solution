@@ -12,7 +12,10 @@ class Solution:
                 offset = columnNumber % 26
             res = chr(offset+ord('A')-1) + res
             
-            columnNumber = (columnNumber-1) // 26
+            if columnNumber % 26 == 0:
+                columnNumber = columnNumber // 26 - 1
+                continue
+            columnNumber = columnNumber // 26
             
   
         return res
