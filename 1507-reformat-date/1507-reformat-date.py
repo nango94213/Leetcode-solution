@@ -4,8 +4,10 @@ class Solution:
              "Sep": "09", "Oct": "10", "Nov": "11", "Dec": "12", }
 
         D = ""
-        if (len(date) == 13):
-            D += date[-4:] + "-" + M[date[-8:-5]] + "-" + date[:2]
+  
+        if len(date) == 13:
+            D = date[-4:] + '-' + M[date[-8:-5]] + '-' + date[:2]
         else:
-            D += date[-4:] + "-" + M[date[-8:-5]] + "-0" + date[0]
+            D = date[-4:] + '-' + M[date[-8:-5]] + '-0' + date[0]
+        
         return D
