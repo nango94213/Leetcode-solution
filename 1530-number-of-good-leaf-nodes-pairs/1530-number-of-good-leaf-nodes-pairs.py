@@ -16,18 +16,15 @@ class Solution:
             if not node:
                 return []
             
-            if not node.left and not node.right:
+            if node.left == None and node.right == None:
                 return [1]
             
             left = dfs(node.left)
             right = dfs(node.right)
             
-            for i in left:
-                for j in right:
-                    if i + j <= distance:
-                        count += 1
+            count += sum([i+j <= distance for i in left for j in right])
             
-            return [n+1 for n in left+right if n+1 < distance]
+            return [i+1 for i in left+right if i+1 < distance]
         
         dfs(root)
         
