@@ -30,7 +30,7 @@ class SnakeGame:
         
         self.snake.append(head)
         self.body.add(head)
-        print(self.snake)
+
         return len(self.snake) - 1
         
 
