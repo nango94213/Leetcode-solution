@@ -3,17 +3,15 @@ class Solution:
         
         properties = sorted(properties, key=lambda x: (x[0], -x[1]))
         
-        total = 0
-        
-
-        
         stack = []
+        res = 0
         
-        for c in [i[1] for i in properties]:
-            while stack and stack[-1] < c:
-                stack.pop()
-                total += 1
+        for v in [i[1] for i in properties]:
             
-            stack.append(c)
+            while stack and stack[-1] < v:
+                stack.pop()
+                res += 1
+            
+            stack.append(v)
         
-        return total
+        return res
