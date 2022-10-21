@@ -21,7 +21,7 @@ class Solution:
                     
                     if dfs(i, j, s[1:]):
                         return True
-            
+                    
             board[x][y] = s[0]
             
             return False
@@ -33,4 +33,4 @@ class Solution:
                     return True
         
         return False
-            
+    
