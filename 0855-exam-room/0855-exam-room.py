@@ -2,25 +2,29 @@ class ExamRoom:
 
     def __init__(self, n: int):
         self.n = n
-        self.L = []
+        self.student = []
         
 
     def seat(self) -> int:
-        if not self.L:
-            res = 0
-        else:
-            d, res = self.L[0], 0
-            for a, b in zip(self.L, self.L[1:]):
-                if (b-a)//2 > d:
-                    d, res = (b-a)//2, (b+a)//2
-            if ((self.n - 1) - self.L[-1]) > d:
-                res = self.n - 1
-        bisect.insort(self.L, res)
+        if not self.student:
+            self.student.append(0)
+            return 0
+        
+        d, res = self.student[0], 0
+        
+        for a, b in zip(self.student, self.student[1:]):
+            if (b-a) // 2 > d:
+                d, res = (b-a) // 2, (a+b) // 2
+
+        if (self.n-1) - self.student[-1] > d:
+            res = self.n - 1
+        bisect.insort(self.student, res)
         return res
         
 
     def leave(self, p: int) -> None:
-        self.L.remove(p)
+        self.student.remove(p)
+        
 
 
 # Your ExamRoom object will be instantiated and called as such:
