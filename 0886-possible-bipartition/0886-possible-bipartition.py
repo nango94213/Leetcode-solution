@@ -12,9 +12,9 @@ class Solution:
         group = {}
         
         for i in range(1, n+1):
-            if i not in seen:
+            if i not in group:
                 group[i] = True
-                seen.add(i)
+     
                 
                 q = collections.deque([(i, True)])
                 
@@ -26,10 +26,10 @@ class Solution:
                         if (child in group) and (group[child] == label):
                             return False
                         
-                        group[child] = not label
                         
-                        if child not in seen:
-                            seen.add(child)
+                        
+                        if child not in group:
+                            group[child] = not label
                             q.append((child, not label))
         
         return True
