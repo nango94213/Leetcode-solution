@@ -2,49 +2,45 @@ import collections
 class Solution:
     def minJumps(self, arr: List[int]) -> int:
         
-        dic = collections.defaultdict(list)
+        graph = collections.defaultdict(set)
         
         for i, v in enumerate(arr):
-            dic[v].append(i)
-
-        q = collections.deque([0])
+            graph[v].add(i)
+            
+        target = len(arr) - 1
         
+        q = collections.deque([0])
         seen = set([0])
         
-        jumps = 0
-        
-        goal = len(arr) - 1
+        jump = 0
         
         while q:
-            print(q)
             for _ in range(len(q)):
                 
                 current = q.popleft()
                 
-                if current == goal:
-                    return jumps
+                if current == target:
+                    return jump
                 
-                next_left = current - 1
-                next_right = current + 1
+                left = current - 1
+                right = current + 1
+                same = graph[arr[current]]
                 
-                sames = dic[arr[current]]
-
-                if (0 <= next_left <= goal) and (next_left not in seen):
-                    seen.add(next_left)
-                    q.append(next_left)
+                if left >= 0 and left not in seen:
+                    seen.add(left)
+                    q.append(left)
                 
-                if (0 <= next_right <= goal) and (next_right not in seen):
-                    seen.add(next_right)
-                    q.append(next_right)
+                if right <= target and right not in seen:
+                    seen.add(right)
+                    q.append(right)
                 
-                for same in sames:
-                    if same not in seen:
-                        seen.add(same)
-                        q.append(same)
-                del dic[arr[current]]
+                for s in same:
+                    if s not in seen:
+                        seen.add(s)
+                        q.append(s)
+                
+                del graph[arr[current]]
             
-            jumps += 1
+            jump += 1
         
-        
-                    
-        
+         
