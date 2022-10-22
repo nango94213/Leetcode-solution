@@ -1,33 +1,33 @@
 class Solution:
     def getMaximumGold(self, grid: List[List[int]]) -> int:
-        direction = [(-1, 0), (1, 0), (0, -1), (0, 1)]
-        m = len(grid)
-        n = len(grid[0])
-        
         res = 0
-        
-        def dfs(x, y, path):
+        direction = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+        def dfs(i,j,path):
             nonlocal res
-            gold = grid[x][y]
-            path += gold
             
-            res = max(res, path)
+
             
-            grid[x][y] = 0
+    
+            res = max(path, res)
             
+            tmp = grid[i][j]
+            grid[i][j]=0
             for d in direction:
-                i = x + d[0]
-                j = y + d[1]
+                new_i = i + d[0]
+                new_j = j + d[1]
                 
-                if 0 <= i < m and 0 <= j < n and grid[i][j] != 0:
-                    dfs(i, j, path)
+                if 0 <= new_i < len(grid) and 0<= new_j < len(grid[0]) and grid[new_i][new_j]!=0:
+                    dfs(new_i, new_j, path+grid[new_i][new_j])
+            grid[i][j] = tmp
+ 
+
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if grid[i][j]!=0:
+                    dfs(i,j, grid[i][j])
                     
-            grid[x][y] = gold
         
-        for i in range(m):
-            for j in range(n):
-                if grid[i][j] != 0:
-                    dfs(i, j, 0)
+        
+        
         
         return res
-            
