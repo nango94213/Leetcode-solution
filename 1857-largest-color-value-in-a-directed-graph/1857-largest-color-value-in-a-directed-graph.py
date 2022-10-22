@@ -3,36 +3,38 @@ class Solution:
     def largestPathValue(self, colors: str, edges: List[List[int]]) -> int:
         
         indegree = collections.defaultdict(int)
-        outgoing = collections.defaultdict(list)
-        color_matrix = [[0]*26 for _ in range(len(colors))]
-        stack = []
-        res = 0
+        outgoing = collections.defaultdict(set)
         
-        for u, v in edges:
-            indegree[v] += 1
-            outgoing[u].append(v)
+        for e in edges:
+            indegree[e[1]] += 1
+            outgoing[e[0]].add(e[1])
         
-        for node in range(len(colors)):
-            if indegree[node] == 0:
-                stack.append(node)
+        dp = [[0]*26 for _ in range(len(colors))]
         
         processed = 0
- 
-        while stack:
-            current = stack.pop()
+        
+        q = collections.deque()
+        
+        for i in range(len(colors)):
+            if indegree[i] == 0:
+                q.append(i)
+        res = 0
+        while q:
+            current = q.popleft()
             processed += 1
-            color_index = ord(colors[current]) - ord('a')
-            color_matrix[current][color_index] += 1
-            res = max(res, color_matrix[current][color_index])
+            index = ord(colors[current]) - ord('a')
             
-            for next_node in outgoing[current]:
-         
-                color_matrix[next_node] = [max(color_matrix[next_node][i],color_matrix[current][i]) for i in range(26)]
-                indegree[next_node] -= 1
+            dp[current][index] += 1
+            
+            res = max(res, dp[current][index])
+            
+            for o in outgoing[current]:
+                indegree[o] -= 1
                 
-                if indegree[next_node] == 0:
-                    stack.append(next_node)
-
-        return -1 if processed < len(colors) else res
-            
+                dp[o] = [max(a, b) for a, b in zip(dp[current], dp[o])]
+                
+                if indegree[o] == 0:
+                    q.append(o)
+        
+        return res if processed == len(colors) else -1
         
