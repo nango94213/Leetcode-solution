@@ -16,7 +16,7 @@ class Solution:
                 if p == target:
                     return True
             
-                if (p+k) in stones_set and 0<=k<=target and (k, p+k) not in seen:
+                if (p+k) in stones_set and (k, p+k) not in seen:
                     seen.add((k, p+k))
                     stack.append((k, p+k))
                 
