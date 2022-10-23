@@ -33,7 +33,7 @@ class Solution:
                         q.append(o)
             
             stops += 1
-        print(res)
+   
         return res if res != float('inf') else -1
 
         
