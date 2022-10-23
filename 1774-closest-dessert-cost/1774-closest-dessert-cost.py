@@ -3,28 +3,24 @@ class Solution:
         
         res = float('inf')
         
-        def dfs(topping, current_sum):
+        def dfs(pool, path):
             nonlocal res
-
-            if abs(current_sum - target) < abs(res - target):
-                
-                res = current_sum
+            if abs(path - target) < abs(res - target):
+                res = path
             
-            elif abs(current_sum - target) == abs(res - target):
-                
-                res = min(current_sum, res)
+            if abs(path - target) == abs(res - target):
+                res = min(res, path)
             
-            if current_sum > target:
+            if path > target:
                 return
             
-            for i in range(len(topping)):
-                dfs(topping[i+1:], current_sum)
-                dfs(topping[i+1:], current_sum+topping[i])
-                dfs(topping[i+1:], current_sum+2*topping[i])
+            for i in range(len(pool)):
+                dfs(pool[i+1:], path)
+                dfs(pool[i+1:], path+pool[i])
+                dfs(pool[i+1:], path+2*pool[i])
+        
         
         for base in baseCosts:
             dfs(toppingCosts, base)
         
         return res
-                
-                
