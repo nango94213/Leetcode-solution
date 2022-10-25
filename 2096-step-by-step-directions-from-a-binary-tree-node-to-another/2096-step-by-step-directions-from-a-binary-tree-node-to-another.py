@@ -11,42 +11,39 @@ class Solution:
         
         def dfs(node, parent):
             
-            if not node:
-                return
-            
-            dic[node.val] = parent
-            
-            dfs(node.left, (node.val, 0))
-            dfs(node.right, (node.val, 1))
+            if node:
+                dic[node.val] = parent
+                
+                dfs(node.left, (node.val, 0))
+                dfs(node.right, (node.val, 1))
         
         dfs(root, (-1, -1))
         
-        p_parent = set()
+        parent_start = set()
         
         tmp = startValue
-     
+        
         while tmp != -1:
-            p_parent.add(tmp)
+            parent_start.add(tmp)
+            tmp = dic[tmp][0]
+        
+        tmp = destValue
+        
+        res = ''
+        
+        while tmp not in parent_start:
+            if dic[tmp][1] == 0:
+                res = 'L' + res
+            if dic[tmp][1] == 1:
+                res = 'R' + res
             
             tmp = dic[tmp][0]
         
+        count = 0
         
-        
-        final = ''
-        
-        while destValue not in p_parent:
-            
-            if dic[destValue][1] == 0:
-                final = 'L' + final
-            else:
-                final = 'R' + final
-            destValue = dic[destValue][0]
-
-        
-        
-        count1 = 0
-        while startValue != destValue:
-            count1 += 1
+        while startValue != tmp:
+            count += 1
             startValue = dic[startValue][0]
         
-        return count1*'U' + final
+        return count*'U' + res
+            
