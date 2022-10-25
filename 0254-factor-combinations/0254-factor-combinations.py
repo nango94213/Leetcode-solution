@@ -1,28 +1,16 @@
 class Solution:
     def getFactors(self, n: int) -> List[List[int]]:
-        
-        if n == 1:
-            return []
-        factors = []
-        for i in range(2, n//2 + 1):
-            if n % i == 0:
-                factors.append(i)
-        
-        res = []
-      
-        def dfs(pool, path, current):
-           
-            if current > n:
+        nums = [x for x in range(2,n//2+1) if n % x == 0]
+        result = []
+        def dfs(nums,index,path,target):
+            if target < 1: return
+            if target == 1 and path:
+                result.append(path)
                 return
-            
-            if current == n:
-                res.append(path)
-            
-            for i in range(len(pool)):
-                dfs(pool[i:], path+[pool[i]], current*pool[i])
-        
-        dfs(factors, [], 1)
-        
-        return res
+            for i in range(index,len(nums)):
+                if target % nums[i] == 0:
+                    dfs(nums,i,path+[nums[i]],target//nums[i])
+        dfs(nums,0,[],n)
+        return result
             
             
