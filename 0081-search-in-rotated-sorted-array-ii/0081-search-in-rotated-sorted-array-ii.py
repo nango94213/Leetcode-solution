@@ -19,7 +19,7 @@ class Solution:
                 pivot = mid + 1
                 break
              
-            if nums[mid] > nums[0]:
+            if nums[mid] >= nums[0]:
                 left = mid + 1
             else:
                 right = mid
