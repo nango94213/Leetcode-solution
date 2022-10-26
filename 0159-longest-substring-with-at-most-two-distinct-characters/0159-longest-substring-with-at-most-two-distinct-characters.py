@@ -5,15 +5,17 @@ class Solution:
         seen = Counter()
         
         left = 0
-        
+        k = 2
         for right in range(len(s)):
             
+            if seen[s[right]] == 0:
+                k -= 1
             seen[s[right]] += 1
             
-            if len(seen) > 2:
+            if k < 0:
                 seen[s[left]] -= 1
                 if seen[s[left]] == 0:
-                    del seen[s[left]]
+                    k += 1
                 left += 1
             
    
