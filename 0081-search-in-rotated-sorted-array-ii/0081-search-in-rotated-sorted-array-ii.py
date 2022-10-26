@@ -23,7 +23,7 @@ class Solution:
                 left = mid + 1
             else:
                 right = mid
-        print(pivot)
+
         if pivot == 0 or target < nums[0]:
             l = pivot
             r = len(nums) - 1
