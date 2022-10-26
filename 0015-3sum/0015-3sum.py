@@ -5,20 +5,25 @@ class Solution(object):
         :rtype: List[List[int]]
         """
         
-        res = []
         nums.sort()
-        
-        def twosum(index):
+        res = []
+        for i in range(len(nums)-2):
             
-            left = index + 1
+            
+            if nums[i] > 0:
+                return res
+            
+            if i > 0 and nums[i] == nums[i-1]:
+                continue
+            
+            left = i + 1
             right = len(nums) - 1
             
             while left < right:
-                sum_three = nums[index] + nums[left] + nums[right]
+                total = nums[i] + nums[left] + nums[right]
                 
-                if sum_three == 0:
-                    res.append([nums[index], nums[left], nums[right]])
-                    
+                if total == 0:
+                    res.append([nums[i],nums[left],nums[right]])
                     left += 1
                     right -= 1
                     
@@ -27,21 +32,12 @@ class Solution(object):
                     
                     while left < right and nums[right] == nums[right+1]:
                         right -= 1
-                    
-                elif sum_three < 0:
-                    left += 1
-                else:
+                
+                if total > 0:
                     right -= 1
-        
-        
-        for i in range(len(nums)-2):
-            
-            if nums[i] > 0:
-                break
-            
-            if i != 0 and nums[i] == nums[i-1]:
-                continue
-            
-            twosum(i)
-        
+                if total < 0:
+                    left += 1
+ 
         return res
+                    
+        
