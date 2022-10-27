@@ -7,10 +7,11 @@
 class Solution:
     def countPairs(self, root: TreeNode, distance: int) -> int:
         
-        count = [0]
+        count = 0
         
         def dfs(node):
             
+            nonlocal count
             
             if not node:
                 return []
@@ -21,10 +22,10 @@ class Solution:
             left = dfs(node.left)
             right = dfs(node.right)
             
-            count[-1] += sum([i+j <= distance for i in left for j in right])
+            count += sum([i+j <= distance for i in left for j in right])
             
-            return [i+1 for i in left+right if i+1 < distance]
+            return [i+1 for i in left+right if i+1 <= distance]
         
         dfs(root)
         
-        return count[-1]
+        return count
