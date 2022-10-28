@@ -8,9 +8,10 @@ class Solution:
     def pathSum(self, root: Optional[TreeNode], targetSum: int) -> int:
         dic = {0: 1}
         res = 0
-        
-        def dfs(node, current):
+        current = 0
+        def dfs(node):
             nonlocal res
+            nonlocal current
             if node:
                 
                 current += node.val
@@ -20,14 +21,15 @@ class Solution:
                 
                 dic[current] = 1 if current not in dic else dic[current] + 1
                 
-                dfs(node.left, current)
+                dfs(node.left)
                 
                 
                 
-                dfs(node.right, current)
+                dfs(node.right)
                 dic[current] -= 1
+                current -= node.val
         
-        dfs(root, 0)
+        dfs(root)
      
         return res
                 
