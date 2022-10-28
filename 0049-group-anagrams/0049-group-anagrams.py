@@ -8,6 +8,9 @@ class Solution(object):
         dic = collections.defaultdict(list)
         
         for s in strs:
-            dic[tuple(sorted(s))].append(s)
+            c = [0] * 26
+            for i in s:
+                c[ord(i)-ord('a')] += 1
+            dic[tuple(c)].append(s)
         
         return dic.values()
