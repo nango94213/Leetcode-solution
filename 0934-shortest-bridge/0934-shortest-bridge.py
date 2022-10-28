@@ -30,7 +30,7 @@ class Solution:
                         dfs(i, j)
         dfs(x, y)
         jump = 0
-        
+        seen = set(bound)
         while bound:
             for _ in range(len(bound)):
                 
@@ -43,9 +43,8 @@ class Solution:
                     i = current[0] + d[0]
                     j = current[1] + d[1]
                     
-                    if 0 <= i < m and 0 <= j < n and grid[i][j] != -1:
-                        if grid[i][j] == 0:
-                            grid[i][j] = -1
+                    if 0 <= i < m and 0 <= j < n and grid[i][j] != -1 and (i, j) not in seen:
+                        seen.add((i, j))
                         bound.append((i, j))
             jump += 1
         
