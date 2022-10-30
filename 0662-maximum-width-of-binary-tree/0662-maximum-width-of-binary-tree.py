@@ -13,6 +13,7 @@ class Solution:
         res = 0
         while q:
             level = []
+            start = q[0][1]
             for _ in range(len(q)):
                 current, d = q.popleft()
                 level.append(d)
@@ -23,7 +24,7 @@ class Solution:
                     q.append((current.right, 2*d+1))
             
             
-            res = max(res, max(level)-min(level)+1)
+            res = max(res, d - start +1)
         
         return res
                 
