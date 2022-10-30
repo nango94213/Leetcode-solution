@@ -19,12 +19,12 @@ class Solution:
                 level.append(d)
                 
                 if current.left:
-                    q.append((current.left, 2*d))
+                    q.append((current.left, 2*d-1))
                 if current.right:
-                    q.append((current.right, 2*d+1))
+                    q.append((current.right, 2*d))
             
             
-            res = max(res, d - start +1)
+            res = max(res, d - start+1)
         
         return res
                 
