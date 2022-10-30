@@ -10,7 +10,7 @@ class Solution:
     def widthOfBinaryTree(self, root: Optional[TreeNode]) -> int:
         
         q = collections.deque([(root, 0)])
-        res = 1
+        res = 0
         while q:
             level = []
             for _ in range(len(q)):
@@ -22,8 +22,8 @@ class Solution:
                 if current.right:
                     q.append((current.right, 2*d+1))
             
-            if len(level) >= 2:
-                res = max(res, max(level)-min(level)+1)
+            
+            res = max(res, max(level)-min(level)+1)
         
         return res
                 
