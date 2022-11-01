@@ -7,7 +7,6 @@
 class Solution:
     def minCameraCover(self, root: Optional[TreeNode]) -> int:
         
-  
         cover = {None}
         res = 0
         def dfs(node, par):
@@ -17,11 +16,14 @@ class Solution:
                 dfs(node.left, node)
                 dfs(node.right, node)
                 
-                if par is None and node not in cover or node.left not in cover or node.right not in cover:
+                if node.left not in cover or node.right not in cover:
                     res += 1
                     cover.update([node, node.left, node.right, par])
         
         dfs(root, None)
+        
+        if root not in cover:
+            res += 1
         return res
                     
         
