@@ -48,4 +48,4 @@ class Solution:
         if tail:
             tail.next = head
         
-        return new if new else head
+        return new
