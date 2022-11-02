@@ -4,11 +4,6 @@ class Solution:
         
         dic = {}
         
-        graphs = collections.defaultdict(set)
-        
-        for i in range(len(graph)):
-            graphs[i].update(graph[i])
-        
         for i in range(len(graph)):
             if i not in dic:
                 dic[i] = True
@@ -18,7 +13,7 @@ class Solution:
                 while q:
                     current, group = q.popleft()
                     
-                    for d in graphs[current]:
+                    for d in graph[current]:
                         if d in dic and dic[d] == group:
                             return False
                         
