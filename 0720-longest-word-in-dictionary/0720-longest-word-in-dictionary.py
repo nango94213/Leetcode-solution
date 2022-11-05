@@ -2,13 +2,15 @@ import collections
 class Solution:
     def longestWord(self, words: List[str]) -> str:
         
-        Trie = lambda: collections.defaultdict(Trie)
-        trie = Trie()
+     
+        trie = {}
         END = True
         
         for i, word in enumerate(words):
             cur_node = trie
             for c in word:
+                if c not in cur_node:
+                    cur_node[c] = {}
                 cur_node = cur_node[c]
             cur_node[END] = i
         
