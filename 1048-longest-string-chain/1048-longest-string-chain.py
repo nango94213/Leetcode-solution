@@ -6,14 +6,14 @@ class Solution:
         words.sort(key=len)
   
         for word in words:
-            chain = 1
+            dic[word] = 1
             for i in range(len(word)):
                 pre = word[:i] + word[i+1:]
                
                 if pre in dic:
-                    chain = max(chain, dic[pre]+1)
+                    dic[word] = max(dic[word], dic[pre]+1)
             
-            dic[word] = chain
-            res = max(res, chain)
+     
+            res = max(res, dic[word])
   
         return res
