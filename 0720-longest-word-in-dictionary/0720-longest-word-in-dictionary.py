@@ -1,15 +1,24 @@
+import collections
 class Solution:
     def longestWord(self, words: List[str]) -> str:
         
-        seen = set([''])
-        res = ''
-        words.sort()
+        Trie = lambda: collections.defaultdict(Trie)
+        trie = Trie()
+        END = True
         
-        for word in words:
-            if word[:-1] in seen:
-                seen.add(word)
-                
-                if len(word) > len(res):
-                    res = word
+        for i, word in enumerate(words):
+            reduce(dict.__getitem__, word, trie)[END] = i
         
-        return res
+        stack = list(trie.values())
+        
+        ans = ""
+        
+        while stack:
+            cur = stack.pop()
+            if END in cur:
+                word = words[cur[END]]
+                if len(word) > len(ans) or len(word) == len(ans) and word < ans:
+                    ans = word
+                stack.extend([cur[letter] for letter in cur if letter != END])
+        
+        return ans
