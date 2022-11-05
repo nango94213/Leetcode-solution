@@ -14,6 +14,6 @@ class Solution:
                     dic[word] = max(dic[word], dic[pre]+1)
             
      
-            res = max(res, dic[word])
+            
   
-        return res
+        return max(dic.values())
