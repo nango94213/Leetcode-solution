@@ -7,7 +7,10 @@ class Solution:
         END = True
         
         for i, word in enumerate(words):
-            reduce(dict.__getitem__, word, trie)[END] = i
+            cur_node = trie
+            for c in word:
+                cur_node = cur_node[c]
+            cur_node[END] = i
         
         stack = list(trie.values())
 
