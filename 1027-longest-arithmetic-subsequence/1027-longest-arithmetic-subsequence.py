@@ -9,4 +9,4 @@ class Solution:
                 dic[(j, nums[j]-nums[i])] = dic[(i, nums[j]-nums[i])] + 1
                 res = max(dic[(j, nums[j]-nums[i])], res)
         
-        return res
+        return max(dic.values())
