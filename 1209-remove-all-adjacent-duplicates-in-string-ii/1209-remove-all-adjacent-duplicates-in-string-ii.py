@@ -4,7 +4,6 @@ class Solution:
         s = list(s)
         
         stack = []
-        res = []
         i = 0
         
         while i < len(s):
