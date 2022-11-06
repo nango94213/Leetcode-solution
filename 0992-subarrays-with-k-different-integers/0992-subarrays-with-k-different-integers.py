@@ -1,7 +1,7 @@
 class Solution:
     def subarraysWithKDistinct(self, nums: List[int], k: int) -> int:
         
-        def helper(x):
+        def helper(nums, x):
             
             left = 0
             count = Counter()
@@ -24,5 +24,5 @@ class Solution:
             
             return res
         
-        return helper(k) - helper(k-1)
+        return helper(nums, k) - helper(nums, k-1)
         
