@@ -5,12 +5,12 @@ class Solution:
         stones = list(map(tuple, stones))
 
         s = set(stones)
-        dx = collections.defaultdict(list)
-        dy = collections.defaultdict(list)
+        dx = collections.defaultdict(set)
+        dy = collections.defaultdict(set)
         
         for i,j in s:
-            dx[i].append(j)
-            dy[j].append(i)
+            dx[i].add(j)
+            dy[j].add(i)
         
         def dfs(i, j):
             for nextY in dx[i]:
