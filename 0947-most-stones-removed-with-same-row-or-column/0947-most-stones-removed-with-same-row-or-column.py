@@ -14,16 +14,14 @@ class Solution:
         
         def dfs(i, j):
             for nextY in dx[i]:
-                if (i, nextY) not in s:
-                    continue
-                s.remove((i, nextY))
-                dfs(i, nextY)
+                if (i, nextY) in s:
+                    s.remove((i, nextY))
+                    dfs(i, nextY)
             
             for nextX in dy[j]:
-                if (nextX, j) not in s:
-                    continue
-                s.remove((nextX, j))
-                dfs(nextX, j)
+                if (nextX, j) in s:
+                    s.remove((nextX, j))
+                    dfs(nextX, j)
         
         island = 0
         
