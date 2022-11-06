@@ -5,8 +5,7 @@ class Solution:
         n = len(grid[0])
         directions = [(1,0),(-1,0),(0,1),(0,-1)]
         
-        x = 0
-        y = 0
+
         
         for i in range(m):
             for j in range(n):
