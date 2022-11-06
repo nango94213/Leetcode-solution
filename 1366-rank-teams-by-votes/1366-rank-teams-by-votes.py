@@ -6,6 +6,6 @@ class Solution:
         for v in votes:
             for i, c in enumerate(v):
                 dic[c][i] += 1
-        print(dic)
+     
         return ''.join(sorted(dic.keys(), key=lambda x: (dic[x], - ord(x)), reverse = True))
                 
