@@ -8,10 +8,10 @@ class Solution(object):
         if len(nums) == 1:
             return 0
         
-        res = 0
+        res = 1
         
         left = 0
-        right = 0
+        right = nums[0]
         
         while right < len(nums) - 1:
             
