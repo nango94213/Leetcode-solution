@@ -22,9 +22,9 @@ class Solution:
                     q.append((current.left, 2*d))
                 if current.right:
                     q.append((current.right, 2*d+1))
-                res = max(res, d - start+1)
             
             
+            res = max(res, d - start+1)
         
         return res
                 
