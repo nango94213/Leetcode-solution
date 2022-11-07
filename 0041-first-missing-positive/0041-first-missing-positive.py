@@ -1,9 +1,7 @@
 class Solution:
     def firstMissingPositive(self, nums: List[int]) -> int:
         
-        
         i = 0
-        
         while i < len(nums):
             j = nums[i] - 1
             
@@ -17,6 +15,3 @@ class Solution:
                 return i + 1
         
         return len(nums) + 1
-        
-                
-        
