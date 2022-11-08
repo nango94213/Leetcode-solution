@@ -3,7 +3,7 @@ class Solution:
         
         nums.sort()
         res = 0
-        need = 0
+        need = nums[0]
         
         for i in nums:
             res += max(need - i, 0)
