@@ -12,11 +12,11 @@ class Solution:
         q = collections.deque([(root, 0)])
         res = 0
         while q:
-            level = []
+  
             start = q[0][1]
             for _ in range(len(q)):
                 current, d = q.popleft()
-                level.append(d)
+    
                 
                 if current.left:
                     q.append((current.left, 2*d))
