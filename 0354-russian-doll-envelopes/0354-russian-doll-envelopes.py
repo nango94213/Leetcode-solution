@@ -11,7 +11,10 @@ class Solution:
         for number in check:
             index = bisect.bisect_left(res, number)
             
-            if index == len(res):
+            if not res:
+                res.append(number)
+                continue
+            if number > res[-1]:
                 res.append(number)
             else:
                 res[index] = number
