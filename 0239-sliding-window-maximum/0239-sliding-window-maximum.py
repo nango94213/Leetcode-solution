@@ -6,13 +6,13 @@ class Solution:
         res = []
         for i in range(len(nums)):
             
-            
+            if q and i - q[0] + 1 > k:
+                q.popleft()
             
             while q and nums[q[-1]] < nums[i]:
                 q.pop()
                 
-            if q and i - q[0] + 1 > k:
-                q.popleft()
+            
             
             q.append(i)
             
