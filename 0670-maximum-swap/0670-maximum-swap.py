@@ -1,20 +1,18 @@
 class Solution:
     def maximumSwap(self, num: int) -> int:
-        
         num = list(str(num))
-        
-        currentMax = len(num) - 1
-        first = 0
-        second = 0
+        swap1 = 0
+        swap2 = 0
+        largest = -1
         
         for i in range(len(num)-1, -1, -1):
+            if num[i] < num[largest]:
+                swap1 = i
+                swap2 = largest
             
-            if num[i] > num[currentMax]:
-                currentMax = i
-            elif num[i] < num[currentMax]:
-                first = i
-                second = currentMax
+            if num[i] > num[largest]:
+                largest = i
         
-        num[first], num[second] = num[second], num[first]
-        
+        num[swap1], num[swap2] = num[swap2], num[swap1]
         return int(''.join(num))
+        
