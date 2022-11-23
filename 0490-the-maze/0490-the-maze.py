@@ -1,31 +1,29 @@
 class Solution:
     def hasPath(self, maze: List[List[int]], start: List[int], destination: List[int]) -> bool:
-        rows = len(maze)
-        cols = len(maze[0])
         directions = [(0, -1), (-1, 0), (0, 1), (1, 0)]
+        m = len(maze)
+        n = len(maze[0])
         
-        seen = set(tuple(start))
-        
+        seen = set([(start[0], start[1])])
+                    
         def dfs(x, y):
             if [x, y] == destination:
                 return True
             
             for d in directions:
+                i = x
+                j = y
                 
-                newX = x
-                newY = y
+                while 0 <= i + d[0] < m and 0 <= j + d[1] < n and maze[i+d[0]][j+d[1]] != 1:
+                    i += d[0]
+                    j += d[1]
                 
-                while 0 <= newX + d[0] < rows and 0 <= newY + d[1] < cols and maze[newX+d[0]][newY+d[1]] == 0:
-                    newX += d[0]
-                    newY += d[1]
-                
-                if (newX, newY) not in seen:
-                    seen.add((newX, newY))
-                    
-                    if dfs(newX, newY):
+                if (i, j) not in seen:
+                    seen.add((i, j))
+                    if dfs(i, j):
                         return True
             
             return False
         
         return dfs(start[0], start[1])
-                
+                    
