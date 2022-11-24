@@ -1,31 +1,27 @@
-import collections
 class Solution:
     def longestWord(self, words: List[str]) -> str:
         
-     
         trie = {}
-        END = True
-        
-        for i, word in enumerate(words):
-            cur_node = trie
-            for c in word:
-                if c not in cur_node:
-                    cur_node[c] = {}
-                cur_node = cur_node[c]
-            cur_node[END] = i
+        end = True
+        for i, v in enumerate(words):
+            current = trie
+            for c in v:
+                if c not in current:
+                    current[c] = {}
+                current = current[c]
+            current[end] = i
         
         stack = list(trie.values())
-
-        ans = ""
         
+        res = ''
         while stack:
-            cur = stack.pop()
-            if END in cur:
-    
-                word = words[cur[END]]
-              
-                if len(word) > len(ans) or len(word) == len(ans) and word < ans:
-                    ans = word
-                stack.extend([cur[letter] for letter in cur if letter != END])
+            now = stack.pop()
+            if end in now:
+                word = words[now[end]]
+                if len(word) > len(res) or len(word) == len(res) and word < res:
+                    res = word
+                
+                stack += [now[i] for i in now if i != end]
         
-        return ans
+        return res
+            
