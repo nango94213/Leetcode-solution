@@ -1,41 +1,40 @@
 import collections
 class Solution:
     def removeInvalidParentheses(self, s: str) -> List[str]:
-        def valid(string):
+        def check(s):
             stack = 0
-            
-            for c in string:
+            for c in s:
                 if c == ')':
                     if not stack:
                         return False
-                    stack -= 1
+                    else:
+                        stack -= 1
                 elif c == '(':
                     stack += 1
-            
             return stack == 0
+        
         q = collections.deque([s])
         
         seen = set([s])
         
-        steps = 0
-        stop = False
         res = []
+        stop = False
         while q:
             for _ in range(len(q)):
                 current = q.popleft()
-                
-                if valid(current):
-                    res.append(current)
+               
+                if check(current):
                     stop = True
+                    res.append(current)
                 
                 for i in range(len(current)):
-                    child = current[:i] + current[i+1:]
-                    if child not in seen:
-                        seen.add(child)
-                        q.append(child)
+                    tmp = current[:i] + current[i+1:]
+                    if tmp not in seen:
+                   
+                        seen.add(tmp)
+                        q.append(tmp)
+    
             if stop:
-                return res
+                break
         return res
-        
-        
-        
+            
