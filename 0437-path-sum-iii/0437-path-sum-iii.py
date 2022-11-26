@@ -7,29 +7,26 @@
 class Solution:
     def pathSum(self, root: Optional[TreeNode], targetSum: int) -> int:
         dic = {0: 1}
-        res = 0
         current = 0
+        res = 0
+        
         def dfs(node):
-            nonlocal res
-            nonlocal current
             if node:
-                
+                nonlocal current, res
                 current += node.val
-               
-                if (current - targetSum) in dic:
+                if current-targetSum in dic:
                     res += dic[current-targetSum]
-                
                 dic[current] = 1 if current not in dic else dic[current] + 1
                 
                 dfs(node.left)
-                
-                
-                
                 dfs(node.right)
+                
                 dic[current] -= 1
                 current -= node.val
         
         dfs(root)
-     
+        
         return res
                 
+                
+        
