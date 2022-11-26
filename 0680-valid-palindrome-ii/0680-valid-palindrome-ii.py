@@ -1,15 +1,14 @@
 class Solution:
     def validPalindrome(self, s: str) -> bool:
-        
-        def check(i, j):
-            while i < j:
-                if s[i] != s[j]:
+        def check(left, right):
+            
+            while left < right:
+                if s[left] != s[right]:
                     return False
-                i += 1
-                j -= 1
+                left += 1
+                right -= 1
             
             return True
-        
         
         left = 0
         right = len(s) - 1
@@ -19,5 +18,6 @@ class Solution:
                 return check(left+1, right) or check(left, right-1)
             left += 1
             right -= 1
-        
         return True
+        
+        
