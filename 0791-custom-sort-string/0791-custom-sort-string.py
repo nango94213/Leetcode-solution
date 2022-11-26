@@ -4,13 +4,12 @@ class Solution:
         
         res = ''
         
-        for c in order:
-            if count[c] > 0:
-                res += count[c]*c
-                count[c] = 0
+        for o in order:
+            res += o * count[o]
+            count[o] = 0
         
-        for c in count:
-            if count[c] > 0:
-                res += count[c]*c
+        for k in count:
+            if count[k] > 0:
+                res += k * count[k]
         
         return res
