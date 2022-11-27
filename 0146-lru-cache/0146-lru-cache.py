@@ -35,7 +35,7 @@ class LRUCache:
         self.head.next = self.tail
         self.tail.prev = self.head
         
-        self.size = 0
+  
         self.capacity = capacity
         
 
@@ -59,14 +59,14 @@ class LRUCache:
             node = DoubleLinkedNode()
             node.key = key
             node.value = value
-            self.size += 1
+            
             
             self.addNode(node)
             self.dic[key] = node
             
             if len(self.dic) > self.capacity:
                 oldNode = self.popOld()
-                self.size -= 1
+              
                 del self.dic[oldNode.key]
         
 
