@@ -1,40 +1,33 @@
 import collections
 class Solution:
     def calcEquation(self, equations: List[List[str]], values: List[float], queries: List[List[str]]) -> List[float]:
-        graph = collections.defaultdict(collections.defaultdict)
-        res = []
+        graph = collections.defaultdict(defaultdict)
         
-        for e, v in zip(equations, values):
-            graph[e[0]][e[1]] = v
-            graph[e[1]][e[0]] = 1/v
+        for i in range(len(equations)):
+            graph[equations[i][0]][equations[i][1]] = values[i]
+            graph[equations[i][1]][equations[i][0]] = 1 / values[i]
         
-        def bfs(start, target):
-            q = collections.deque([(start, 1.0)])
-            seen = set([start])
-            
+        def check(s, e):
+            q = collections.deque([(s, 1.0)])
+            seen = set([s])
             while q:
                 current, value = q.popleft()
-                
-                if current == target:
+                if current == e:
                     return value
-                
-                for o in graph[current]:
+                for o in graph[current].keys():
                     if o not in seen:
                         seen.add(o)
-                        q.append((o, value*graph[current][o]))
+                        q.append((o, graph[current][o]*value))
             
             return -1.0
-        
-        for q in queries:
-            if q[0] not in graph or q[1] not in graph:
+        res = []
+        for s, e in queries:
+            if s not in graph or e not in graph:
                 res.append(-1.0)
-                continue
-            
-            if q[0] == q[1]:
+            elif s == e:
                 res.append(1.0)
-                continue
-            
-            res.append(bfs(q[0], q[1]))
+            else:
+                res.append(check(s, e))
         
         return res
         
