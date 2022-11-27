@@ -12,26 +12,24 @@ class SnakeGame:
         
 
     def move(self, direction: str) -> int:
+        new = (self.snake[-1][0]+self.d[direction][0], self.snake[-1][1]+self.d[direction][1])
         
-        head = (self.snake[-1][0] + self.d[direction][0], self.snake[-1][1] + self.d[direction][1])
-        if head[0] < 0 or head[0] >= self.m or head[1] < 0 or head[1] >= self.n:
+        if new[0] < 0 or new[0] >= self.m or new[1] < 0 or new[1] >= self.n:
+            return -1
+        if new in self.body and new != self.snake[0]:
             return -1
         
-        if head != self.snake[0] and head in self.body:
-            return -1
+        f = self.food[self.index] if self.index < len(self.food) else None
         
-        current = self.food[self.index] if self.index < len(self.food) else None
-        
-        if current and (head[0] == current[0]) and (head[1] == current[1]):
+        if f and (f[0], f[1]) == new:
             self.index += 1
         else:
-            tail = self.snake.popleft()
-            self.body.remove(tail)
+            tmp = self.snake.popleft()
+            self.body.remove(tmp)
         
-        self.snake.append(head)
-        self.body.add(head)
-
-        return len(self.snake) - 1
+        self.snake.append(new)
+        self.body.add(new)
+        return len(self.body)-1
         
 
 
