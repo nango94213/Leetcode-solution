@@ -1,18 +1,14 @@
-import random
-import bisect
+import random, bisect
 class Solution:
 
     def __init__(self, w: List[int]):
-        for i in range(1, len(w)):
-            w[i] = w[i-1] + w[i]
-        
         self.w = w
-        self.total = w[-1]
-        
+        for i in range(1, len(w)):
+            self.w[i] += self.w[i-1]
 
     def pickIndex(self) -> int:
-        pick = random.random() * self.total
-        return bisect.bisect_left(self.w, pick)
+        number = random.random() * self.w[-1]
+        return bisect.bisect_left(self.w, number)
         
 
 
