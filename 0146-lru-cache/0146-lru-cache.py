@@ -1,73 +1,63 @@
-class DoubleLinkedNode():
+class gg:
     def __init__(self):
-        self.key = 0
-        self.value = 0
-        self.prev = None
+        self.v = 0
+        self.k = 0
         self.next = None
+        self.prev = None
 class LRUCache:
-    
-    def addNode(self, node):
-        node.prev = self.tail.prev
+    def add(self, node):
         node.next = self.tail
+        node.prev = self.tail.prev
         
         self.tail.prev.next = node
         self.tail.prev = node
+  
     
-    def removeNode(self, node):
-        node.prev.next, node.next.prev = node.next, node.prev
+    def remove(self, node):
+        node.prev.next = node.next
+        node.next.prev = node.prev
     
-    def moveToEnd(self, node):
-        self.removeNode(node)
-        self.addNode(node)
+    def update(self, node):
+        self.remove(node)
+        self.add(node)
     
-    def popOld(self):
-        
-        res = self.head.next
-        self.removeNode(res)
-        
-        return res
+    def pop(self):
+        h = self.head.next
+        self.remove(h)
+        return h
 
     def __init__(self, capacity: int):
         self.dic = {}
-        self.head = DoubleLinkedNode()
-        self.tail = DoubleLinkedNode()
+        self.head = gg()
+        self.tail = gg()
         
         self.head.next = self.tail
         self.tail.prev = self.head
-        
-  
-        self.capacity = capacity
+        self.c = capacity
         
 
     def get(self, key: int) -> int:
-        
-        if key in self.dic:
-            node = self.dic[key]
-            self.moveToEnd(node)
-            return node.value
-        else:
+        if key not in self.dic:
             return -1
+        self.update(self.dic[key])
+        return self.dic[key].v
         
 
     def put(self, key: int, value: int) -> None:
-        
+   
         if key in self.dic:
-            node = self.dic[key]
-            self.moveToEnd(node)
-            node.value = value
+            self.dic[key].v = value
+            self.update(self.dic[key])
         else:
-            node = DoubleLinkedNode()
-            node.key = key
-            node.value = value
-            
-            
-            self.addNode(node)
+            node = gg()
+            node.k = key
+            node.v = value
+            self.add(node)
             self.dic[key] = node
-            
-            if len(self.dic) > self.capacity:
-                oldNode = self.popOld()
-              
-                del self.dic[oldNode.key]
+            if len(self.dic) > self.c:
+                tmp = self.pop()
+
+                del self.dic[tmp.k]
         
 
 
