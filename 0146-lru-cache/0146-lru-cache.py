@@ -1,7 +1,7 @@
 class gg:
-    def __init__(self):
-        self.v = 0
-        self.k = 0
+    def __init__(self, k, v):
+        self.v = v
+        self.k = k
         self.next = None
         self.prev = None
 class LRUCache:
@@ -28,8 +28,8 @@ class LRUCache:
 
     def __init__(self, capacity: int):
         self.dic = {}
-        self.head = gg()
-        self.tail = gg()
+        self.head = gg(-1, -1)
+        self.tail = gg(-1, -1)
         
         self.head.next = self.tail
         self.tail.prev = self.head
@@ -49,9 +49,8 @@ class LRUCache:
             self.dic[key].v = value
             self.update(self.dic[key])
         else:
-            node = gg()
-            node.k = key
-            node.v = value
+            node = gg(key, value)
+       
             self.add(node)
             self.dic[key] = node
             if len(self.dic) > self.c:
