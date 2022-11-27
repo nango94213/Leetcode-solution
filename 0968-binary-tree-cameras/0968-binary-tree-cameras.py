@@ -6,24 +6,27 @@
 #         self.right = right
 class Solution:
     def minCameraCover(self, root: Optional[TreeNode]) -> int:
+        count = 0
+        seen = set([None])
         
-        cover = {None}
-        res = 0
-        def dfs(node, par):
-            nonlocal res
+        def dfs(node, p):
+            
             if node:
-                
+                nonlocal count
                 dfs(node.left, node)
                 dfs(node.right, node)
                 
-                if node.left not in cover or node.right not in cover:
-                    res += 1
-                    cover.update([node, node.left, node.right, par])
+                if node.left not in seen or node.right not in seen:
+                    count += 1
+                    seen.update([node, node.left, node.right, p])
         
         dfs(root, None)
         
-        if root not in cover:
-            res += 1
-        return res
-                    
+        if root not in seen:
+            count += 1
+        
+        return count
+                
+                
+            
         
