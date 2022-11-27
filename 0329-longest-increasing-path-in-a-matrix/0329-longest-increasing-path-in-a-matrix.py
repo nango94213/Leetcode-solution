@@ -5,28 +5,25 @@ class Solution:
         dp = [[0]*n for i in range(m)]
         directions = [(0, -1),(-1, 0),(0, 1),(1, 0)]
         
-        def dfs(i, j):
-            if dp[i][j]:
-                return dp[i][j]
+        def dfs(x, y):
+            if dp[x][y]:
+                return dp[x][y]
             
             for d in directions:
+                i = x + d[0]
+                j = y + d[1]
                 
-                x = i + d[0]
-                y = j + d[1]
-          
-                if 0 <= x < m and 0 <= y < n and matrix[x][y] > matrix[i][j]:
-                    dp[i][j] = max(dp[i][j], dfs(x, y))
-                    
+                if 0 <= i < m and 0 <= j < n and matrix[i][j] > matrix[x][y]:
+                    dp[x][y] = max(dp[x][y], dfs(i,j))
             
-            dp[i][j] += 1
-            
-            return dp[i][j]
+            dp[x][y] += 1
+            return dp[x][y]
         
-        res = 0
-        
+        res = -float('inf')
         for i in range(m):
             for j in range(n):
                 res = max(res, dfs(i, j))
         
         return res
+        
                 
