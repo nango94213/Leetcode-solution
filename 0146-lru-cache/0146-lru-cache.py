@@ -6,12 +6,13 @@ class gg:
         self.prev = None
 class LRUCache:
     def add(self, node):
-        node.next = self.tail
-        node.prev = self.tail.prev
+        new = node
+        new.next = self.tail
+        new.prev = self.tail.prev
         
-        self.tail.prev.next = node
-        self.tail.prev = node
-        return node
+        self.tail.prev.next = new
+        self.tail.prev = new
+        return new
   
     
     def remove(self, node):
