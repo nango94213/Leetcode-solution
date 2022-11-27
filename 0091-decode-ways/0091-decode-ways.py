@@ -2,8 +2,7 @@ class Solution:
     def numDecodings(self, s: str) -> int:
         if s[0] == '0':
             return 0
-        if len(s) == 1:
-            return 1
+   
         prev2 = 1
         prev1 = 1
         
@@ -15,4 +14,4 @@ class Solution:
                 current += prev2
             prev1, prev2 = current, prev1
         
-        return current
+        return prev1
