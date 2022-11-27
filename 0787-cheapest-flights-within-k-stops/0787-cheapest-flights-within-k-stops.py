@@ -1,39 +1,31 @@
 import collections
 class Solution:
     def findCheapestPrice(self, n: int, flights: List[List[int]], src: int, dst: int, k: int) -> int:
-        
-        dic = collections.defaultdict(dict)
-        res = float('inf')
+        graph = collections.defaultdict(dict)
         
         for f in flights:
-            dic[f[0]][f[1]] = f[2]
+            graph[f[0]][f[1]] = f[2]
         
-        q = collections.deque([(src)])
+        q = collections.deque([(src, 0)])
+        seen = collections.defaultdict(lambda: float('inf'))
+        seen[(src, 0)] = 0
         
-        cost = collections.defaultdict(lambda: float('inf'))
-        cost[(src, 0)] = 0
-        
-        stops = 0
-        
-        while q and stops <= k + 1:
+        stop = 0
+        res = float('inf')
+        while q and stop <= k + 1:
             for _ in range(len(q)):
-                
-                current = q.popleft()
+                current, _ = q.popleft()
                 if current == dst:
-                  
-                    res = min(res, cost[(current, stops)])
+                    print(current)
+                    res = min(res, seen[(current, stop)])
                     continue
-                
-                for o, v in dic[current].items():
-                    
-                    currentCost = cost[(current, stops)]
-                   
-                    if currentCost + v < cost[(o, stops+1)]:
-                        cost[(o, stops+1)] = currentCost + v
-                        q.append(o)
             
-            stops += 1
-   
-        return res if res != float('inf') else -1
-
-        
+                for o in graph[current]:
+                    p = seen[(current, stop)]
+                
+                    if p + graph[current][o] < seen[(o, stop+1)]:
+                        seen[(o, stop+1)] = p + graph[current][o]
+                        q.append((o, stop+1))
+            stop += 1
+        return -1 if res == float('inf') else res
+             
