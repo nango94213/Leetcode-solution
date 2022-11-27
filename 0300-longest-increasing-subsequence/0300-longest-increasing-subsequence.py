@@ -1,14 +1,15 @@
 import bisect
 class Solution:
     def lengthOfLIS(self, nums: List[int]) -> int:
-        
         res = []
-        for num in nums:
-            index = bisect.bisect_left(res, num)
-            
-            if index == len(res):
-                res.append(num)
-            else:
-                res[index] = num
+        
+        for n in nums:
+            if res and res[-1] > n:
+                index = bisect.bisect_left(res, n)
+                if index < len(res):
+                    res[index] = n
+            elif not res or res[-1] < n:
+                res.append(n)
         
         return len(res)
+        
