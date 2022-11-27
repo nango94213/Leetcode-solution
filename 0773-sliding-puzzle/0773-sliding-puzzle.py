@@ -5,34 +5,26 @@ class Solution:
         
         state = ''.join([str(i) for i in board[0]]) + ''.join([str(i) for i in board[1]])
         
-        start  = state.index('0')
-        
-        q = collections.deque([(start, state)])
-        
+        q = collections.deque([state])
+        seen = set([state])
         step = 0
         
-        seen = set([state])
-        
         while q:
-            
             for _ in range(len(q)):
-                current0, currentState = q.popleft()
-                
-                if currentState == '123450':
+                current = q.popleft()
+                if current == '123450':
                     return step
                 
-                for d in directions[current0]:
-                    tmp = list(currentState)
-                    
-                    tmp[current0], tmp[d] = tmp[d], tmp[current0]
-                    
-                    tmp = ''.join(tmp)
-                    
-                    if tmp not in seen:
-                        seen.add(tmp)
-                        q.append((d, tmp))
-            
+                index = current.index('0')
+                
+                for o in directions[index]:
+                    l = list(current)
+                    l[o], l[index] = l[index], l[o]
+                    s = ''.join(l)
+                    if s not in seen:
+                        seen.add(s)
+                        q.append(s)
             step += 1
-            
+        
         return -1
                     
