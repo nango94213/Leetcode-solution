@@ -6,8 +6,7 @@ class Solution:
         for n in nums:
             if res and res[-1] > n:
                 index = bisect.bisect_left(res, n)
-                if index < len(res):
-                    res[index] = n
+                res[index] = n
             elif not res or res[-1] < n:
                 res.append(n)
         
