@@ -8,15 +8,17 @@ class Solution(object):
         dic = {}
         for i, v in enumerate(order):
             dic[v] = i
-            
+        
         for i in range(len(words)-1):
-            for j in range(len(words[i])):
+            j = 0
+            while j < len(words[i]):
                 if j >= len(words[i+1]):
                     return False
-                
                 if words[i][j] != words[i+1][j]:
-                    if dic[words[i][j]] > dic[words[i+1][j]]:
+                    if dic[words[i][j]] < dic[words[i+1][j]]:
+                        break
+                    else:
                         return False
-                    break
+                j += 1
         return True
-                    
+                
