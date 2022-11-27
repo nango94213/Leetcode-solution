@@ -1,3 +1,4 @@
+import collections
 class Solution:
     def orangesRotting(self, grid: List[List[int]]) -> int:
         directions = [(0, -1), (-1, 0), (0, 1), (1, 0)]
@@ -13,13 +14,12 @@ class Solution:
             for j in range(n):
                 if grid[i][j] == 2:
                     q.append((i, j))
+                
                 if grid[i][j] == 1:
                     good += 1
-        
         if good == 0:
             return 0
-        res = 0
-        
+        time = 0
         while q:
             for _ in range(len(q)):
                 current = q.popleft()
@@ -32,8 +32,7 @@ class Solution:
                         good -= 1
                         grid[i][j] = 2
                         q.append((i, j))
-            
-            res += 1
-       
-        return res - 1 if not good else -1
+            time += 1
         
+        return time-1 if good == 0 else -1
+            
