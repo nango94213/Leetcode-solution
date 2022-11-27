@@ -14,7 +14,7 @@ class Solution:
                 current, value = q.popleft()
                 if current == e:
                     return value
-                for o in graph[current].keys():
+                for o in graph[current]:
                     if o not in seen:
                         seen.add(o)
                         q.append((o, graph[current][o]*value))
