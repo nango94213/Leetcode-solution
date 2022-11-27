@@ -6,8 +6,7 @@
 import heapq
 class Solution:
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
-        if not lists:
-            return None
+       
         h = []
         
         for i, v in enumerate(lists):
