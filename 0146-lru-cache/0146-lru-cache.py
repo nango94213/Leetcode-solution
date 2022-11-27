@@ -64,7 +64,7 @@ class LRUCache:
             self.addNode(node)
             self.dic[key] = node
             
-            if self.size > self.capacity:
+            if len(self.dic) > self.capacity:
                 oldNode = self.popOld()
                 self.size -= 1
                 del self.dic[oldNode.key]
