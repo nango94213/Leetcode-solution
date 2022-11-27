@@ -52,8 +52,8 @@ class LRUCache:
         else:
             node = gg(key, value)
        
-            self.add(node)
-            self.dic[key] = node
+            
+            self.dic[key] = self.add(node)
             if len(self.dic) > self.c:
                 tmp = self.pop()
 
