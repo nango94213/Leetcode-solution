@@ -8,11 +8,10 @@ class Solution:
         
         def dfs(x, y, path):
             nonlocal res
-            gold = grid[x][y]
-            path += gold
-            
+            path += grid[x][y]
             res = max(res, path)
             
+            tmp = grid[x][y]
             grid[x][y] = 0
             
             for d in direction:
@@ -21,8 +20,8 @@ class Solution:
                 
                 if 0 <= i < m and 0 <= j < n and grid[i][j] != 0:
                     dfs(i, j, path)
-                    
-            grid[x][y] = gold
+            
+            grid[x][y] = tmp
         
         for i in range(m):
             for j in range(n):
