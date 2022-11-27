@@ -1,37 +1,35 @@
 import collections
 class Solution:
     def shortestPath(self, grid: List[List[int]], k: int) -> int:
-        
         directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
-        steps = 0
-        target = (len(grid)-1, len(grid[0])-1)
         q = collections.deque([(0, 0, k)])
         seen = set([(0, 0, k)])
         
+        step = 0
+        
         m = len(grid)
         n = len(grid[0])
+        target = (m-1, n-1)
         
         while q:
             for _ in range(len(q)):
-                x, y, live = q.popleft()
-                
+                x, y, a = q.popleft()
                 if (x, y) == target:
-                    return steps
+                    return step
                 
                 for d in directions:
-                    newX = x + d[0]
-                    newY = y + d[1]
+                    i = x + d[0]
+                    j = y + d[1]
                     
-                    if 0 <= newX < m and 0 <= newY < n:
+                    if 0 <= i < m and 0 <= j < n:
+                        if grid[i][j] == 0 and (i, j, a) not in seen:
+                            seen.add((i, j, a))
+                            q.append((i, j, a))
                         
-                        if grid[newX][newY] == 0 and (newX, newY, live) not in seen:
-                            seen.add((newX, newY, live))
-                            q.append((newX, newY, live))
-                        
-                        if grid[newX][newY] == 1 and live > 0 and (newX, newY, live-1) not in seen:
-                            seen.add((newX, newY, live-1))
-                            q.append((newX, newY, live-1))
-                
-            steps += 1
+                        if grid[i][j] == 1 and a > 0 and (i, j, a-1) not in seen:
+                            seen.add((i, j, a-1))
+                            q.append((i, j, a-1))
+            
+            step += 1
         
         return -1
