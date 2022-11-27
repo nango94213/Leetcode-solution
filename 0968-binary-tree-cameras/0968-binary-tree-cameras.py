@@ -7,7 +7,7 @@
 class Solution:
     def minCameraCover(self, root: Optional[TreeNode]) -> int:
         count = 0
-        seen = set([None])
+        seen = set([])
         
         def dfs(node, p):
             
@@ -16,7 +16,7 @@ class Solution:
                 dfs(node.left, node)
                 dfs(node.right, node)
                 
-                if node.left not in seen or node.right not in seen:
+                if node.left and node.left not in seen or node.right and node.right not in seen:
                     count += 1
                     seen.update([node, node.left, node.right, p])
         
