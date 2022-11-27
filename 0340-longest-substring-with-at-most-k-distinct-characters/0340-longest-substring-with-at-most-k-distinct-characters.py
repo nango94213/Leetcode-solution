@@ -1,9 +1,8 @@
 class Solution:
     def lengthOfLongestSubstringKDistinct(self, s: str, k: int) -> int:
-        
-        left = 0
         count = Counter()
         
+        left = 0
         for right in range(len(s)):
             if count[s[right]] == 0:
                 k -= 1
@@ -12,10 +11,9 @@ class Solution:
                 count[s[left]] -= 1
                 if count[s[left]] == 0:
                     k += 1
+                
                 left += 1
-            
-            
-            
         
         return right - left + 1
+                
         
