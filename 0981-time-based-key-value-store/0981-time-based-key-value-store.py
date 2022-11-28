@@ -1,7 +1,9 @@
+import collections
 class TimeMap(object):
 
     def __init__(self):
-        self.dic = collections.defaultdict(list)
+        self.time = collections.defaultdict(list)
+        
 
     def set(self, key, value, timestamp):
         """
@@ -10,7 +12,7 @@ class TimeMap(object):
         :type timestamp: int
         :rtype: None
         """
-        self.dic[key].append((timestamp, value))
+        self.time[key].append((value, timestamp))
         
 
     def get(self, key, timestamp):
@@ -19,23 +21,19 @@ class TimeMap(object):
         :type timestamp: int
         :rtype: str
         """
+        check = self.time[key]
         left = 0
-        right = len(self.dic[key]) - 1
-        values = self.dic[key]
+        right = len(check) - 1
+        
         while left <= right:
             mid = (left+right) // 2
-            if values[mid][0] == timestamp:
-                right = mid
-                break
-            if values[mid][0] > timestamp:
+            if check[mid][1] == timestamp:
+                return check[mid][0]
+            if check[mid][1] > timestamp:
                 right = mid - 1
-            if values[mid][0] < timestamp:
+            else:
                 left = mid + 1
-                
-        return "" if right == -1 else values[right][1]
-            
-        
-
+        return check[right][0] if right != -1 else ""
 
 # Your TimeMap object will be instantiated and called as such:
 # obj = TimeMap()
