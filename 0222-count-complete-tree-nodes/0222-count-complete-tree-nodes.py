@@ -9,40 +9,40 @@ class Solution:
         if not root:
             return 0
         
-        d = 0
+        d = -1
         
         p = root
         
-        while p.left:
+        while p:
             p = p.left
             d += 1
-        
-        print(d)
-        def check(index, node):
+     
+        def check(index):
+            p = root
             l = 0
             r = 2**d - 1
-            
-            
             for _ in range(d):
                 mid = (l+r) // 2
-                if mid >= index:
-                    node = node.left
+                if index <= mid:
+                    p = p.left
                     r = mid
                 else:
-                    node = node.right
                     l = mid + 1
-            return node != None
-        
+                    p = p.right
+                    
+            return p != None
         
         left = 0
         right = 2**d - 1
         
+        
         while left <= right:
             mid = (left+right) // 2
-            if check(mid, root):
+            
+            if check(mid):
                 left = mid + 1
             else:
                 right = mid - 1
         
         return 2**d - 1 + left
-        
+            
