@@ -7,13 +7,12 @@ class Solution:
             count = 0
             while s < e:
                 if track[s] == 0:
-                    track[s] = e
                     count += 1
+                    track[s] = e
                     s += 1
                 else:
-                    t = s
+                    old = s
                     s = track[s]
-                    track[t] = max(track[t], e)
+                    track[old] = max(track[old], e)
             res.append(count)
         return res
-                
