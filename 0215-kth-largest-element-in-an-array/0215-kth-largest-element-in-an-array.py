@@ -16,7 +16,7 @@ class Solution:
             if left == right:
                 return nums[left]
             
-            pivot = random.randint(left, right)
+            pivot = right
             i = partition(left, right, pivot)
             
             if i == len(nums) - k:
