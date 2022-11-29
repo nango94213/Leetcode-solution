@@ -32,7 +32,7 @@ class Solution:
             
             if i == k:
                 rev = reverse(head, k)
-                if not tail:
+                if not new:
                     new = rev
                 
                 if tail:
