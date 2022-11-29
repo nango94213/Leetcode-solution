@@ -7,24 +7,20 @@
 class Solution:
     def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
         
-        dic = {}
-        
+        info = {}
         for i, v in enumerate(inorder):
-            dic[v] = i
+            info[v] = i
         
-        
-        def dfs(sub):
-            if not sub:
-                return None
-            if sub and preorder:
+        def dfs(s):
+            if s and preorder:
+                
                 current = preorder.pop(0)
-                index = dic[current] - dic[sub[0]]
+                index = info[current] - info[s[0]]
+                root = TreeNode(current)
+                root.left = dfs(s[:index])
+                root.right = dfs(s[index+1:])
                 
-                new = TreeNode(current)
-                
-                new.left = dfs(sub[:index])
-                new.right = dfs(sub[index+1:])
-                
-                return new
-            
+                return root
+        
         return dfs(inorder)
+        
