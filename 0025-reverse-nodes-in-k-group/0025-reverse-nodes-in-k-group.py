@@ -40,8 +40,7 @@ class Solution:
                 
                 tail = head
                 head = ptr
-        if tail:
-            tail.next = head
+        tail.next = head
         return new
             
             
