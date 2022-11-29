@@ -6,12 +6,11 @@ class Solution:
         keys = list(count.keys())
         
         def partition(left, right, pivot):
-            p = keys[pivot]
             keys[pivot], keys[right] = keys[right], keys[pivot]
             
             i = left
             for j in range(left, right):
-                if count[keys[j]] < count[p]:
+                if count[keys[j]] < count[keys[right]]:
                     keys[i], keys[j] = keys[j], keys[i]
                     i += 1
             keys[i], keys[right] = keys[right], keys[i]
