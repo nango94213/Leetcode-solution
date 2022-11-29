@@ -14,23 +14,23 @@ class Solution:
         res = []
         left = True
         while q:
-            level = []
+            level = collections.deque()
             for _ in range(len(q)):
                 
                 current = q.popleft()
                 
-                level.append(current.val)
+                if left:
+                    level.append(current.val)
+                else:
+                    level.appendleft(current.val)
                 
                 if current.left:
                     q.append(current.left)
                 if current.right:
                     q.append(current.right)
 
-            if not left:
-                
-                level = reversed(level)
-            res.append(level)
             left = not left
+            res.append(level)
         
         return res
         
