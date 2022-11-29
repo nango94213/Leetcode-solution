@@ -1,39 +1,31 @@
 class Solution:
     def findKthLargest(self, nums: List[int], k: int) -> int:
         
-        def partition(left, right, pivot_index):
+        def partition(left, right, pivot):
+            nums[pivot], nums[right] = nums[pivot], nums[right]
             
-            pivot = nums[pivot_index]
-            
-            nums[pivot_index], nums[right] = nums[right], nums[pivot_index]
             i = left
-            
             for j in range(left, right):
-                if nums[j] < pivot:
+                if nums[j] < nums[right]:
                     nums[i], nums[j] = nums[j], nums[i]
                     i += 1
-            
-            nums[right], nums[i] = nums[i], nums[right]
-            
+            nums[i], nums[right] = nums[right], nums[i]
             return i
         
-        def select(left, right):
-            
+        def search(left, right):
             if left == right:
                 return nums[left]
             
-            pivot_index = random.randint(left, right)
-            
-            i = partition(left, right, pivot_index)
+            pivot = random.randint(left, right)
+            i = partition(left, right, pivot)
             
             if i == len(nums) - k:
                 return nums[i]
             
             if i > len(nums) - k:
-                return select(left, i-1)
+                return search(left, i-1)
             else:
-                return select(i+1, right)
+                return search(i+1, right)
         
-        return select(0, len(nums)-1)
-            
-            
+        return search(0, len(nums)-1)
+        
