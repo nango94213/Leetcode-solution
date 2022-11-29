@@ -6,46 +6,43 @@
 class Solution:
     def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
         
-        def reverse(node, t):
+        def reverse(sub, k):
             
             prev = None
-            
-            while t > 0:
-                t -= 1
+            i = 0
+            while i < k:
+                hold = sub.next
+                sub.next = prev
+                prev = sub
+                sub = hold
                 
-                hold = node.next
-                node.next = prev
-                prev = node
-                node = hold
-            
+                i += 1
             return prev
         
-        
         ptr = head
-        new = None
         tail = None
+        new = None
         
         while ptr:
             
-            count = 0
-            
-            while count < k and ptr:
-                count += 1
+            i = 0
+            while i < k and ptr:
                 ptr = ptr.next
+                i += 1
             
-            if count == k:
+            if i == k:
                 rev = reverse(head, k)
-                
-                if not new:
+                if not tail:
                     new = rev
                 
                 if tail:
                     tail.next = rev
-                    
+                
                 tail = head
                 head = ptr
-            
         if tail:
             tail.next = head
-        
-        return new if new else head
+        return new
+            
+            
+            
