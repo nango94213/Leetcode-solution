@@ -1,11 +1,11 @@
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
+        
         count = Counter(t)
         k = len(t)
         
-        res = ''
-        
         left = 0
+        res = ''
         for right in range(len(s)):
             if s[right] in count:
                 count[s[right]] -= 1
@@ -13,8 +13,9 @@ class Solution:
                     k -= 1
             
             while k == 0:
-                if not res or right - left + 1 < len(res):
+                if not res or len(res) > right - left + 1:
                     res = s[left:right+1]
+                
                 if s[left] in count:
                     count[s[left]] += 1
                     if count[s[left]] > 0:
@@ -22,6 +23,3 @@ class Solution:
                 left += 1
         
         return res
-            
-                
-        
