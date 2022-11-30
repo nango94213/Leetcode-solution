@@ -7,17 +7,15 @@ class Solution(object):
         """
         a = Counter(secret)
         b = Counter(guess)
-        first = 0
+        
+        x = 0
         for i in range(len(secret)):
-            if  secret[i] == guess[i]:
-                first += 1
+            if secret[i] == guess[i]:
+                x += 1
                 a[secret[i]] -= 1
                 b[secret[i]] -= 1
-        
-        second = 0
-        
+        y = 0
         for k in a:
-            if  k in b:
-                second += min(a[k], b[k])
+            y += min(a[k], b[k])
         
-        return str(first) + 'A' + str(second) + 'B'
+        return str(x) + 'A' + str(y) + 'B'
