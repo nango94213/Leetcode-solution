@@ -6,44 +6,38 @@
 #         self.right = right
 class Solution:
     def getDirections(self, root: Optional[TreeNode], startValue: int, destValue: int) -> str:
+        info = {}
+        p_s = set()
         
-        dic = {}
+        ptr = startValue
         
         def dfs(node, parent):
-            
             if node:
-                dic[node.val] = parent
-                
+                info[node.val] = parent
                 dfs(node.left, (node.val, 0))
                 dfs(node.right, (node.val, 1))
+        dfs(root, (0, 0))
         
-        dfs(root, (-1, -1))
-        
-        parent_start = set()
-        
-        tmp = startValue
-        
-        while tmp != -1:
-            parent_start.add(tmp)
-            tmp = dic[tmp][0]
-        
-        tmp = destValue
+        while ptr:
+            p_s.add(ptr)
+            ptr = info[ptr][0]
         
         res = ''
-        
-        while tmp not in parent_start:
-            if dic[tmp][1] == 0:
+        while destValue not in p_s:
+            par, d = info[destValue]
+
+            if d == 0:
                 res = 'L' + res
-            if dic[tmp][1] == 1:
+            else:
                 res = 'R' + res
-            
-            tmp = dic[tmp][0]
+            destValue = par
         
         count = 0
-        
-        while startValue != tmp:
+        while startValue != destValue:
+            startValue = info[startValue][0]
             count += 1
-            startValue = dic[startValue][0]
         
         return count*'U' + res
             
+            
+        
