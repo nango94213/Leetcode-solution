@@ -10,14 +10,14 @@ class Solution:
         q = collections.deque([(root, 0)])
         res = 0
         while q:
-            res = max(res, q[-1][1] - q[0][1])
+            res = max(res, q[-1][1] - q[0][1]+1)
             for _ in range(len(q)):
                 current, d = q.popleft()
                 if current.left:
                     q.append((current.left, 2*d))
                 if current.right:
                     q.append((current.right, 2*d+1))
-        return res + 1
+        return res
         
         
         
