@@ -1,15 +1,19 @@
 class Solution:
     def isHappy(self, n: int) -> bool:
-        seen = set([n])        
+        
+        seen = set([n])
+        
         while True:
-            current = sum([int(i)**2 for i in str(n)])
-            if current == 1:
+            total = 0
+            while n:
+                total += (n % 10) ** 2
+                n = n // 10
+            n = total
+        
+            if total == 1:
                 return True
-            n = current
-            if n in seen:
+            if total in seen:
                 return False
-            seen.add(n)
-            
-            
-            
-            
+            seen.add(total)
+        
+        
