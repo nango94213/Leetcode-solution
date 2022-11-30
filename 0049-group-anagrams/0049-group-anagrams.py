@@ -1,4 +1,3 @@
-import collections
 class Solution(object):
     def groupAnagrams(self, strs):
         """
@@ -6,11 +5,10 @@ class Solution(object):
         :rtype: List[List[str]]
         """
         dic = collections.defaultdict(list)
-        
         for s in strs:
-            c = [0] * 26
-            for i in s:
-                c[ord(i)-ord('a')] += 1
-            dic[tuple(c)].append(s)
-        
+            count = [0] * 26
+            for c in s:
+                count[ord(c)-ord('a')] += 1
+            dic[tuple(count)].append(s)
+    
         return dic.values()
