@@ -10,9 +10,9 @@ class Solution:
                 stack.append(c)
                 continue
             
-            if not stack or stack and dic[stack[-1]] != c:
+            if not stack:
                 return False
-            else:
-                stack.pop()
-        
+            if dic[stack[-1]] != c:
+                return False
+            stack.pop()
         return stack == []
