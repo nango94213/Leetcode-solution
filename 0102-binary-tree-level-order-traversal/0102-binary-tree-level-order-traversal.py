@@ -4,7 +4,6 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
-import collections
 class Solution:
     def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
         if not root:
@@ -16,10 +15,11 @@ class Solution:
             for _ in range(len(q)):
                 current = q.popleft()
                 level.append(current.val)
+                
                 if current.left:
                     q.append(current.left)
                 if current.right:
                     q.append(current.right)
             res.append(level)
-        return res
         
+        return res
