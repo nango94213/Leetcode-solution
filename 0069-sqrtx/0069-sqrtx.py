@@ -9,16 +9,13 @@ class Solution:
         
         while left <= right:
             mid = (left+right) // 2
-            
-            two = mid * mid
-            
-            if two == x:
+            if mid**2 == x:
                 return mid
             
-            if two > x:
+            if mid**2 > x:
                 right = mid - 1
-            
-            if two < x:
+            else:
                 left = mid + 1
         return right
+        
         
