@@ -8,7 +8,7 @@ class Solution:
         
         def dfs(node, prev):
             nonlocal res
-            p = 1 if node else 0
+            p = 1
             for o in graph[node]:
                 if o == prev:
                     continue
