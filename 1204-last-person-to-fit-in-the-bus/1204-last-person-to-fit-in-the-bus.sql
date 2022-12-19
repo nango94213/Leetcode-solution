@@ -1,0 +1,2 @@
+# Write your MySQL query statement below
+select t.Name person_name from (select turn Turn, person_id ID, person_name Name, weight Weight, sum(weight) over(order by turn) Total from Queue) t where t.Total <= 1000 order by t.Total desc limit 1
