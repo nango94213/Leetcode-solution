@@ -8,7 +8,9 @@ class Solution:
                     num //= i
             return total
         
-        while n != check(n):
-            n = check(n)
+        start = check(n)
+        while n != start:
+            n = start
+            start = check(n)
         return n
         
