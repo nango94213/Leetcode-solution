@@ -1,2 +1,2 @@
 # Write your MySQL query statement below
-select t.student_id, t.course_id, t.grade from(select student_id, course_id, grade, rank() over (partition by student_id order by grade desc, course_id asc) info from Enrollments) t where t.info = 1
+select t.student_id, t.course_id, t.grade from(select *, rank() over (partition by student_id order by grade desc, course_id asc) info from Enrollments) t where t.info = 1
