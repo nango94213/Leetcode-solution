@@ -11,5 +11,6 @@ class Solution:
             if i < len(players) and trainers[j] >= players[i]:
                 res += 1
                 i += 1
-            
+                if i == len(players):
+                    return res
         return res
