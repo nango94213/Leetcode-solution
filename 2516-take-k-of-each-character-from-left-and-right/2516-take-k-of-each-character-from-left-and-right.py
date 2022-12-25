@@ -7,7 +7,8 @@ class Solution:
         count = Counter(s)
         for key in count:
             count[key] -=  k
-       
+        
+        j = 3
         for right in range(len(s)):
             count[s[right]] -= 1
             
