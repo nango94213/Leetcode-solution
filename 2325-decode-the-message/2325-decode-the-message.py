@@ -3,12 +3,12 @@ class Solution:
         default = 'abcdefghijklmnopqrstuvwxyz'
         j = 0
         dic = {}
-        dic[' '] = ' '
-        
-        for k in key:
-            if k not in dic:
-                dic[k] = default[j]
+        for i in range(len(key)):
+   
+            if key[i] != ' ' and key[i] not in dic:
+                dic[key[i]] = default[j]
                 j += 1
+        dic[' '] = ' '
         res = ''
         for c in message:
             res += dic[c]
