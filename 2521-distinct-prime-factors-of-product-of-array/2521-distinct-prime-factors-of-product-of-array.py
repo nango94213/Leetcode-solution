@@ -2,7 +2,7 @@ class Solution:
     def distinctPrimeFactors(self, nums: List[int]) -> int:
         res = set()
         for n in nums:
-            for i in range(2, int(n**0.5)+1):
+            for i in range(2, n//2+1):
                 if n % i == 0:
                     res.add(i)
                     
