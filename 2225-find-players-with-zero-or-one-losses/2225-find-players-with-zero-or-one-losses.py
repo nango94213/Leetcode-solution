@@ -13,10 +13,10 @@ class Solution:
         a = []
         b = []
         
-        for n in range(1, 10**5+1):
-            if n in total and indegree[n] == 0:
+        for n in total:
+            if indegree[n] == 0:
                 a.append(n)
             if indegree[n] == 1:
                 b.append(n)
         
-        return [a, b]
+        return [sorted(a), sorted(b)]
