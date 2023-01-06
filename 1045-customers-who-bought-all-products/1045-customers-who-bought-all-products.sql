@@ -1,6 +1,6 @@
 # Write your MySQL query statement below
 
-with cte as(select * from Customer union select * from Customer),
+with cte as(select * from Customer group by customer_id, product_key),
 
 cte2 as (select customer_id, count(product_key) ct from cte group by customer_id),
 
