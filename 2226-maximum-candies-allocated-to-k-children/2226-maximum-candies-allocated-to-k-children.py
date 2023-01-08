@@ -1,9 +1,8 @@
 class Solution:
     def maximumCandies(self, candies: List[int], k: int) -> int:
-        if sum(candies) < k:
-            return 0
-        left = 1
-        right = max(candies)
+
+        left = 0
+        right = max(candies) 
         
         while left < right:
             mid = (left+right+1) // 2
