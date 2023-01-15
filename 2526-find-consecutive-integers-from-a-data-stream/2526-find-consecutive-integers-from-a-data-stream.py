@@ -19,6 +19,9 @@ class DataStream:
         
         self.q.append(num)
         
+        if len(self.q) > self.k:
+            self.q.popleft()
+        
         return self.count >= self.k
             
         
