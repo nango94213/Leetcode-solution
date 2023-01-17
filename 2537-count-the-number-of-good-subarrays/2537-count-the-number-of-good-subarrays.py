@@ -7,8 +7,7 @@ class Solution:
         n = len(nums)
         for right, v in enumerate(nums):
             
-            if current[v] > 0:
-                c += current[v]
+            c += current[v]
             
             current[v] += 1
             
