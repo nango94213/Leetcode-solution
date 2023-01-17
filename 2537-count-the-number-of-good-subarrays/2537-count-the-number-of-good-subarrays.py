@@ -12,9 +12,10 @@ class Solution:
             current[v] += 1
             
             while c >= k:
-                count += n - right
+                
                 current[nums[left]] -= 1
                 c -= current[nums[left]]
                 left += 1
+            count += left
         
         return count
