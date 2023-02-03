@@ -3,20 +3,10 @@ class Solution:
        
         beans.sort()
         n = len(beans)
-        prefix = []
+        total = sum(beans)
+        best = beans[0] * n
+        for i in range(n-1):
+            best = max(best, beans[i+1]*(n-i-1))
         
-        for b in beans:
-            if prefix:
-                prefix.append(prefix[-1] + b)
-            else:
-                prefix.append(b)
-      
-        res = (prefix[-1] - prefix[0]) - beans[0] * (n-1)
-       
-        for i in range(n):
-            
-            res = min(res, prefix[i]+prefix[-1]-prefix[min(i+1, n-1)]-beans[min(i+1, n-1)]*(n-2-i))
-           
-            
-        return res
+        return total - best
             
