@@ -7,7 +7,8 @@ class Solution:
         for right in range(len(prizePositions)):
             while prizePositions[left] + k < prizePositions[right]:
                 left += 1
-            dp[right+1] = max(dp[right], right-left+1)
+            
             
             res = max(res, right-left+1+dp[left])
+            dp[right+1] = max(dp[right], right-left+1)
         return res
