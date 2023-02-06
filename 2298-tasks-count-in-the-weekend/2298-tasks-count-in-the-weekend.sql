@@ -1,3 +1,3 @@
 # Write your MySQL query statement below
 
-select count(case when weekday(submit_date)<5 then 1 else null end) weekend_cnt, count(case when weekday(submit_date)>=5 then 1 else null end) working_cnt from Tasks
+select sum(if(WEEKDAY(submit_date)>4, 1, 0)) weekend_cnt, sum(if(WEEKDAY(submit_date)<=4, 1, 0)) working_cnt from Tasks
