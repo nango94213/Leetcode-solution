@@ -1,4 +1,3 @@
 # Write your MySQL query statement below
-with cte as(select c.customer_id, p.product_id, rank() over(partition by customer_id order by count(*) desc) rk, p.product_name from Customers c join Orders o on c.customer_id = o.customer_id join Products p on o.product_id = p.product_id group by c.customer_id, p.product_id)
 
-select customer_id, product_id, product_name from cte where rk = 1
+select tmp.customer_id, tmp.product_id, p.product_name from (select customer_id, product_id, rank() over(partition by customer_id order by count(product_id) desc) rk  from Orders group by customer_id, product_id) tmp join Products p on tmp.product_id = p.product_id where rk = 1
