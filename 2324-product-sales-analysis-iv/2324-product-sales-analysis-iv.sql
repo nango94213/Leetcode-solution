@@ -1,7 +1,3 @@
 # Write your MySQL query statement below
-with cte as(select user_id, s.product_id, quantity, price from Sales s join Product p on s.product_id = p.product_id),
 
-cte2 as(select user_id, product_id, sum(quantity*price) total from cte group by user_id, product_id)
-
-select user_id, product_id from (select user_id, product_id, rank() over(partition by user_id order by total desc) ranking from cte2) t where t.ranking = 1
-
+select user_id, product_id from (select a.user_id, a.product_id, rank() over(partition by a.user_id order by sum(a.quantity*b.price) desc) rk from Sales a join Product b on a.product_id = b.product_id group by a.user_id, a.product_id) tmp where tmp.rk = 1
