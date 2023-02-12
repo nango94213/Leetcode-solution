@@ -1,9 +1,3 @@
 # Write your MySQL query statement below
 
-with a as(select distinct(customer_id) from Orders where product_name = 'A'),
-
-b as(select distinct(customer_id) from Orders where product_name = 'B'),
-
-c as(select distinct(customer_id) from Orders where product_name = 'C')
-
-select a.customer_id, customer_name from a join customers on a.customer_id = Customers.customer_id where a .customer_id in (select * from b) and a.customer_id not in (select * from c)
+select a.customer_id, a.customer_name from Customers a join Orders b on a.customer_id = b.customer_id group by a.customer_id having sum(product_name="A") > 0 and sum(product_name='B') > 0 and sum(product_name='C') = 0
