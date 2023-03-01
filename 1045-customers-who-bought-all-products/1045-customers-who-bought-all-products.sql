@@ -2,12 +2,8 @@
 
 with cte as(select * from Customer group by customer_id, product_key),
 
-cte2 as (select customer_id, count(product_key) ct from cte group by customer_id),
+cte2 as(select customer_id, count(*) ct from cte group by customer_id),
 
-cte3 as (select count(*) pct from Product)
+cte3 as(select count(*) gt from Product)
 
-
-
-#select * from cte order by customer_id
-#select * from cte2 order by customer_id
-select customer_id from cte2, cte3 where ct = pct
+select customer_id from cte2, cte3 where ct = gt
