@@ -1,13 +1,12 @@
 class Solution:
     def leftRigthDifference(self, nums: List[int]) -> List[int]:
-        left = [0]
-        n = len(nums)
-        for i in range(len(nums)-1):
-            left.append(left[-1]+nums[i])
-        ans = collections.deque()
+        res = []
+        left = 0 
+        right = sum(nums)
+        for i in range(len(nums)):
+            right -= nums[i]
+            res.append(abs(left-right))
+            left += nums[i]
         
-        now = 0
-        for i in range(len(nums)-1, -1, -1):
-            ans.appendleft(abs(left[i]-now))
-            now += nums[i]
-        return ans
+        return res
+            
