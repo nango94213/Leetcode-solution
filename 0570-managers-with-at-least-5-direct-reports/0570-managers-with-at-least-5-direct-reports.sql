@@ -1,5 +1,7 @@
 # Write your MySQL query statement below
 
-with cte as(select managerID, count(*) counting from Employee group by managerID)
 
-select e.name from cte c join Employee e on e.id = c.managerID where c.counting >= 5
+with cte as(select managerId from Employee group by managerId having count(*) >= 5)
+
+
+select a.name from Employee a join cte b on a.id = b.managerId
