@@ -1,2 +1,3 @@
 # Write your MySQL query statement below
-select c.name from Candidate c join Vote v on c.id = v.candidateId group by c.name order by count(*) desc limit 1
+
+select a.name from Candidate a join (select candidateId, rank() over(order by count(*) desc) rk from vote group by candidateId) b on a.id = b.candidateId where rk = 1
