@@ -11,7 +11,7 @@ class Solution:
                 continue
             total += temp[i][0]
         
-            index.update([temp[i][1], max(temp[i][1]-1, 0), min(temp[i][1]+1, len(temp))])
+            index.update([temp[i][1], temp[i][1]-1, temp[i][1]+1, len(temp)])
             
         return total
         
