@@ -1,7 +1,7 @@
 # Write your MySQL query statement below
 
-with cte as(select *, -amount negative from Transactions),
+with cte as(select paid_by, -amount amount from Transactions union all select paid_to, amount from Transactions),
 
-cte2 as(select user_id, credit total from Users union all select paid_by, negative from cte union all select paid_to, amount from cte)
+cte2 as(select paid_by user_id, sum(amount) amount from cte group by user_id)
 
-select *, case when credit < 0 then 'Yes' when credit >= 0 then 'No' end credit_limit_breached from (select c.user_id, u.user_name, sum(c.total) credit from cte2 c join Users u on c.user_id = u.user_id group by user_id) gg
+select a.user_id, a.user_name, a.credit+ifnull(b.amount, 0) credit, if(a.credit+ifnull(b.amount, 0) < 0, 'Yes', 'No') credit_limit_breached from Users a left join cte2 b on a.user_id = b.user_id
