@@ -26,6 +26,8 @@ class Solution:
                 
         
         for i, v in enumerate(nums):
+            if v > 0:
+                return res
             if i and v == nums[i-1]:
                 continue
   
