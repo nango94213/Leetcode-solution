@@ -1,6 +1,6 @@
 class Solution:
     def diagonalPrime(self, nums: List[List[int]]) -> int:
-        def is_prime(n):
+        '''def is_prime(n):
             if n <= 1:
                 return False
             if n <= 3:
@@ -14,6 +14,13 @@ class Solution:
                         return False
                 i += 6
 
+            return True'''
+        def is_prime(n):
+            if n <= 1:
+                return False
+            for i in range(2, int(n**0.5)+1):
+                if n % i == 0:
+                    return False
             return True
         res = 0
         n = len(nums) - 1
