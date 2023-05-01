@@ -1,16 +1,20 @@
 class Solution:
     def findMatrix(self, nums: List[int]) -> List[List[int]]:
-        count = list(Counter(nums).items())
+        count = Counter(nums)
         
-        count.sort(key = lambda x: x[1], reverse=True)
-        print(count)
-        res = [[] for _ in range (count[0][1])]
+        k = max(count.values())
+
+        res = [[] for _ in range(k)]
         
-        for n in count:
-            for i in range(n[1]):
-                res[i].append(n[0])
-        
+        for n in nums:
+            if count[n] > 0:
+                res[count[n]-1].append(n)
+                count[n] -= 1
         return res
+            
+        
+        
+        
         
         
         
