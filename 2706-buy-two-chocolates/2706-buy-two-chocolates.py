@@ -1,6 +1,6 @@
 class Solution:
     def buyChoco(self, prices: List[int], money: int) -> int:
-        a = float('inf')
+        '''a = float('inf')
         b = float('inf')
         t = 0
         
@@ -12,5 +12,9 @@ class Solution:
             if p < b and i != t:
                 b = p
         res = money - a - b
-        return res if res >= 0 else money
+        return res if res >= 0 else money'''
+        prices.sort()
+        
+        total = money - prices[0] - prices[1]
+        return total if total >= 0 else money
         
