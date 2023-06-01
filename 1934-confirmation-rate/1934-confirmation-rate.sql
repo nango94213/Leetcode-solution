@@ -1,4 +1,5 @@
 # Write your MySQL query statement below
 
-select s.user_id, round(sum(case when action = 'confirmed' then 1 else 0 end) / count(*), 2) confirmation_rate from Signups s left join Confirmations c on s.user_id = c.user_id group by s.user_id
+with cte as(select user_id, round(sum(action = 'confirmed')/count(time_stamp), 2) confirmation_rate from Confirmations group by user_id)
 
+select a.user_id, ifnull(b.confirmation_rate, 0) confirmation_rate from Signups a left join cte b on a.user_id = b.user_id
