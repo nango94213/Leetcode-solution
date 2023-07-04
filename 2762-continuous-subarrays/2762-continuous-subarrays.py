@@ -13,9 +13,7 @@ class Solution:
                     if nums[right] - k > 2:
                         left = max(left, dic[k]+1)
                         d.append(k)
-                
-                for k in dic:
-                    if k - nums[right] > 2:
+                    elif k - nums[right] > 2:
                         left = max(left, dic[k]+1)
                         d.append(k)
                 for k in d:
