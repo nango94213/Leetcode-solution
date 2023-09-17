@@ -1,26 +1,26 @@
 class Solution:
     def decodeString(self, s: str) -> str:
-        number = []
-        string = []
+        stackN = []
+        stackS = []
         
         current = ''
-        n = 0
+        number = 0
         
         for c in s:
             if c.isdigit():
-                n = n*10 + int(c)
-            
+                number = number*10 + int(c)
             if c.isalpha():
                 current += c
             
             if c == '[':
-                number.append(n)
-                string.append(current)
-                
+                stackN.append(number)
+                stackS.append(current)
+                number = 0
                 current = ''
-                n = 0
             
             if c == ']':
-                current = string.pop() + number.pop() * current
+                current = stackS.pop() + stackN.pop() * current
         
         return current
+            
+        
