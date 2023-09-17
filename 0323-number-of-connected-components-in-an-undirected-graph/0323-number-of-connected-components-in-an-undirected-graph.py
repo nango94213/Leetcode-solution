@@ -1,4 +1,3 @@
-import collections
 class Solution:
     def countComponents(self, n: int, edges: List[List[int]]) -> int:
         graph = collections.defaultdict(set)
@@ -15,13 +14,16 @@ class Solution:
             if i not in seen:
                 count += 1
                 seen.add(i)
+                
                 q = collections.deque([i])
                 
                 while q:
                     current = q.popleft()
                     
-                    for o in graph[current]:
-                        if o not in seen:
-                            seen.add(o)
-                            q.append(o)
+                    for n in graph[current]:
+                        if n not in seen:
+                            seen.add(n)
+                            q.append(n)
+        
         return count
+        
