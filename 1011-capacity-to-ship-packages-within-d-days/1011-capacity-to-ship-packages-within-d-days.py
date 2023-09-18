@@ -5,24 +5,21 @@ class Solution:
         right = sum(weights)
         
         while left < right:
-            mid = (left + right) // 2
+            mid = (left+right) // 2
             
             day = 1
-            current = 0
-            
+            current = 0 
             for w in weights:
                 if current + w > mid:
                     day += 1
                     current = w
-                    continue
-                
-                current += w
+                else:
+                    current += w
             
             if day > days:
                 left = mid + 1
-                continue
-            
-            right = mid
+            else:
+                right = mid
         
-        return right
-                
+        return left
+        
