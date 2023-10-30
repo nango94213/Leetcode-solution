@@ -7,8 +7,7 @@ class Solution:
             if c in dic:
                 if not stack or stack[-1] != dic[c]:
                     return False
-                else:
-                    stack.pop()
+                stack.pop()
             else:
                 stack.append(c)
         
