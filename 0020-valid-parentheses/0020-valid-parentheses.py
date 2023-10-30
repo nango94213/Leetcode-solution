@@ -4,12 +4,13 @@ class Solution:
         dic = {')':'(', ']':'[', '}':'{'}
         
         for c in s:
-            if c not in dic:
-                stack.append(c)
-            else:
-                if not stack or dic[c] != stack[-1]:
+            if c in dic:
+                if not stack or stack[-1] != dic[c]:
                     return False
-                stack.pop()
-                
-        return stack == []
+                else:
+                    stack.pop()
+            else:
+                stack.append(c)
+        
+        return True if not stack else False
         
