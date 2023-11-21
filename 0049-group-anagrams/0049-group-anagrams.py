@@ -9,7 +9,7 @@ class Solution:
             for c in word:
                 count[ord(c)-ord('a')] += 1
     
-            return str(count)
+            return tuple(count)
         
         for s in strs:
             dic[key(s)].append(s)
