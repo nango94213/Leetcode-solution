@@ -14,7 +14,7 @@ class Solution:
         if grid[row-1][cols-1] ==1 or grid[0][0] == 1:
             return -1
         
-        seen = set([(0, 0)])
+        grid[0][0] = 1
         
         steps = 1
         
@@ -31,9 +31,8 @@ class Solution:
                     
                     newx, newy = x + d[0], y + d[1]
                     
-                    if 0 <= newx < row and 0 <= newy < cols and grid[newx][newy] == 0 and (newx, newy) not in seen:
-                        
-                        seen.add((newx, newy))
+                    if 0 <= newx < row and 0 <= newy < cols and grid[newx][newy] == 0:
+                        grid[newx][newy] =1 
                         
                         q.append((newx, newy))
             
