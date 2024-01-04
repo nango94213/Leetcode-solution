@@ -9,8 +9,11 @@ class Solution:
         current = 0 
         for i in range(1, len(dic)):
             current += dic[i]
-            dic[i] = current
-        
-        return sum([i > 0 for i in dic])
+            if current > 0:
+                dic[i] = 1
+            else:
+                dic[i] = 0
+      
+        return sum(dic)
         
         
